@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "91554586988",
+    "project_id": "fir-shop-f7c59",
+    "storage_bucket": "fir-shop-f7c59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91554586988:android:b4253f7bdaac10c9605349",
+        "android_client_info": {
+          "package_name": "com.example.firebase_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK_w8G-bVH8v2XtFNB1aDa8LWY8TCwG7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
