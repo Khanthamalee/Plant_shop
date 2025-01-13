@@ -1,16 +1,16 @@
 import 'dart:ffi';
 
 class UserCreationReq {
-  String? firstname;
-  String? lastname;
+  String? firstName;
+  String? lastName;
   String? email;
   String? password;
   Int? gender;
   String? age;
 
   UserCreationReq({
-    required this.firstname,
-    required this.lastname,
+    required this.firstName,
+    required this.lastName,
     required this.email,
     required this.password,
   });

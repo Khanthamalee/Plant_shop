@@ -19,8 +19,8 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
           .collection('user')
           .doc(ReturnedData.user!.uid)
           .set({
-        'firstName': user.firstname,
-        'lastName': user.lastname,
+        'firstName': user.firstName,
+        'lastName': user.lastName,
         'email': user.email,
         'password': user.password,
         'gender': user.gender,

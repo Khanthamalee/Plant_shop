@@ -27,8 +27,10 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.firebase_shop"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 35
+    //compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
