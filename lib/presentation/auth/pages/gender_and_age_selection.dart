@@ -1,7 +1,10 @@
+import 'package:firebase_shop/common/bloc/button/button_state.dart';
 import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
 import 'package:firebase_shop/common/helper/bottomsheet/app_bottom_sheet.dart';
 import 'package:firebase_shop/common/widget/appbar/app_bar.dart';
+import 'package:firebase_shop/common/widget/button/basic_reactive_button.dart.dart';
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
+import 'package:firebase_shop/domain/Auth/usecases/signup.dart';
 import 'package:firebase_shop/presentation/auth/pages/widgets/ages.dart';
 import 'package:firebase_shop/presentation/splash/bloc/age_display_cubit.dart';
 import 'package:firebase_shop/presentation/splash/bloc/age_selection_cubit.dart';
@@ -10,13 +13,16 @@ import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/widget/button/base_app_button.dart';
+import '../../../data/auth/models/user_creation_req.dart';
 
 class GenderAndAgeSelectionPage extends StatelessWidget {
-  const GenderAndAgeSelectionPage({super.key});
+  final UserCreationReq userCreateReq;
+
+  const GenderAndAgeSelectionPage({super.key, required this.userCreateReq});
 
   @override
   Widget build(BuildContext context) {
+    print(userCreateReq.firstName);
     return Scaffold(
       appBar: const BasicAppBar(),
       body: MultiBlocProvider(
@@ -26,28 +32,41 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
           BlocProvider(create: (context) => AgesDisplayCubit()),
           BlocProvider(create: (context) => ButtonStateCubit()),
         ],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.symmetric(
-                  horizontal: DSH(16), vertical: DSH(40)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _tellusText(),
-                  _height(context),
-                  _gender(context),
-                  _height(context),
-                  _howoldText(),
-                  _height(context),
-                  _ageDropdawn(),
-                  _height(context),
-                ],
+        child: BlocListener<ButtonStateCubit, ButtonState>(
+          listener: (context, state) {
+            if (state is ButtonFailureState) {
+              var snackbar = SnackBar(
+                content: Text(state.errorMessage),
+                behavior: SnackBarBehavior.floating,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            }
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: DSH(16), vertical: DSH(40)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _tellusText(),
+                      _height(context),
+                      _gender(context),
+                      _height(context),
+                      _howoldText(),
+                      _height(context),
+                      _ageDropdawn(),
+                      _height(context),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            _finishButton(),
-          ],
+              _finishButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -88,7 +107,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
         child: Container(
             height: DSH(60),
             decoration: BoxDecoration(
-                color: context.read<GenderSelectionCubit>().selectIndex ==
+                color: context.read<GenderSelectionCubit>().selectedIndex ==
                         genderIndex
                     ? AppColors.secondary
                     : AppColors.backgroundsecondary,
@@ -146,7 +165,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
     });
   }
 
-  Widget _finishButton() {
+  Widget _finishButton(BuildContext context) {
     return Container(
         height: DSH(100),
         color: AppColors.backgroundsecondary,
@@ -154,10 +173,23 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
           horizontal: DSH(16),
         ),
         child: Center(
-          child: BaseAppButton(
-            onPressed: () {},
-            title: 'Finish',
-          ),
+          child: Builder(builder: (context) {
+            return BasicReactiveButton(
+              onPressed: () {
+                userCreateReq.gender =
+                    context.read<GenderSelectionCubit>().selectedIndex;
+                userCreateReq.age =
+                    context.read<AgeSelectionCubit>().selectedAge;
+                context
+                    .read<ButtonStateCubit>()
+                    .execute(usecase: SignupUsecase(), params: userCreateReq);
+                print(userCreateReq.firstName);
+                print(userCreateReq.gender);
+                print(userCreateReq.age);
+              },
+              title: 'Finish',
+            );
+          }),
         ));
   }
 }

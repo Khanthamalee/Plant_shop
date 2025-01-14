@@ -57,7 +57,7 @@ class EnterPasswordpage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BaseAppButton(
       onPressed: () {
-        AppNavigator.push(context, GenderAndAgeSelectionPage());
+        //AppNavigator.push(context, GenderAndAgeSelectionPage());
       },
       title: "Continue",
     );

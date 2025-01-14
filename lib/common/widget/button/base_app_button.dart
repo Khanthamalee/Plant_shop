@@ -13,17 +13,19 @@ class BaseAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(height ?? DSH(50)),
-        //backgroundColor: AppColors.secondary
+    return SingleChildScrollView(
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(height ?? DSH(50)),
+          //backgroundColor: AppColors.secondary
+        ),
+        child: Text(title,
+            style: TextStyle(
+                fontSize: DSH(16),
+                color: AppColors.primary,
+                fontWeight: FontWeight.w400)),
       ),
-      child: Text(title,
-          style: TextStyle(
-              fontSize: DSH(16),
-              color: AppColors.primary,
-              fontWeight: FontWeight.w400)),
     );
   }
 }

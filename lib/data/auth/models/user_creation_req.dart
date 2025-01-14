@@ -5,7 +5,7 @@ class UserCreationReq {
   String? lastName;
   String? email;
   String? password;
-  Int? gender;
+  int? gender;
   String? age;
 
   UserCreationReq({

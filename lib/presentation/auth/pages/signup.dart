@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../common/widget/appbar/app_bar.dart';
 import '../../../common/widget/button/base_app_button.dart';
+import '../../../data/auth/models/user_creation_req.dart';
 import '../../../responsive/dimension.dart';
 import 'enter_password.dart';
+import 'gender_and_age_selection.dart';
 import 'signin.dart';
 
 class Signuppage extends StatelessWidget {
-  const Signuppage({super.key});
+  final TextEditingController _firstNameCon = TextEditingController();
+  final TextEditingController _lastNameCon = TextEditingController();
+  final TextEditingController _emailCon = TextEditingController();
+  final TextEditingController _passwordCon = TextEditingController();
+  Signuppage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +24,26 @@ class Signuppage extends StatelessWidget {
         body: Padding(
           padding: EdgeInsetsDirectional.symmetric(
               horizontal: DSH(16), vertical: DSH(60)),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _creatAccountText(context),
-                _height(context),
-                _inputTextField(context, "Firstname"),
-                _height(context),
-                _inputTextField(context, "Lastname"),
-                _height(context),
-                _inputTextField(context, "Email"),
-                _height(context),
-                _inputTextField(context, "Password"),
-                _height(context),
-                _continueButton(context),
-                _height(context),
-                _createAccount(context)
-              ]),
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _creatAccountText(context),
+                  _height(context),
+                  _inputTextField(context, "Firstname", _firstNameCon),
+                  _height(context),
+                  _inputTextField(context, "Lastname", _lastNameCon),
+                  _height(context),
+                  _inputTextField(context, "Email", _emailCon),
+                  _height(context),
+                  _inputTextField(context, "Password", _passwordCon),
+                  _height(context),
+                  _continueButton(context),
+                  _height(context),
+                  _createAccount(context)
+                ]),
+          ),
         ));
   }
 
@@ -50,8 +58,10 @@ class Signuppage extends StatelessWidget {
     );
   }
 
-  Widget _inputTextField(BuildContext context, String hintText) {
+  Widget _inputTextField(
+      BuildContext context, String hintText, TextEditingController controller) {
     return TextField(
+      controller: controller,
       style: TextStyle(color: AppColors.bigtext, fontSize: DSH(18)),
       decoration: InputDecoration(
         hintText: hintText,
@@ -62,7 +72,15 @@ class Signuppage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BaseAppButton(
       onPressed: () {
-        //AppNavigator.push(context, const EnterPasswordpage());
+        AppNavigator.push(
+            context,
+            GenderAndAgeSelectionPage(
+                userCreateReq: UserCreationReq(
+              firstName: _firstNameCon.text,
+              lastName: _lastNameCon.text,
+              email: _emailCon.text,
+              password: _passwordCon.text,
+            )));
       },
       title: "Continue",
     );

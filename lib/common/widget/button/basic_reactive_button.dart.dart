@@ -25,19 +25,21 @@ class BasicReactiveButton extends StatelessWidget {
     });
   }
 
-  Widget _initail() {
+  Widget _loading() {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: null,
       style: ElevatedButton.styleFrom(
         minimumSize: Size.fromHeight(height ?? DSH(50)),
         //backgroundColor: AppColors.secondary
       ),
       child: Container(
-          alignment: Alignment.center, child: CircularProgressIndicator()),
+          height: height ?? DSH(50),
+          alignment: Alignment.center,
+          child: CircularProgressIndicator()),
     );
   }
 
-  Widget _loading() {
+  Widget _initail() {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
