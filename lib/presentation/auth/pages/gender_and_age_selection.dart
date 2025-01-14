@@ -115,7 +115,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
             child: Center(
               child: Text(gender,
                   style: TextStyle(
-                      fontWeight: FontWeight.w400, fontSize: DSH(20))),
+                      fontWeight: FontWeight.w400, fontSize: DSH(18))),
             )),
       ),
     );
@@ -156,7 +156,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
               children: [
                 Text(
                   state,
-                  style: TextStyle(fontSize: DSH(20)),
+                  style: TextStyle(fontSize: DSH(18)),
                 ),
                 Icon(Icons.keyboard_arrow_down)
               ],

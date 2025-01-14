@@ -1,4 +1,5 @@
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
+import 'package:firebase_shop/data/auth/models/user_signin_req.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../common/helper/Navigator/app_navigator.dart';
@@ -11,8 +12,9 @@ import 'signup.dart';
 class Signinpage extends StatelessWidget {
   Signinpage({super.key});
 
+  final TextEditingController _emailEditingCon = TextEditingController();
+
   @override
-  TextEditingController emailEditingController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const BasicAppBar(hideBack: true),
@@ -47,7 +49,7 @@ class Signinpage extends StatelessWidget {
 
   Widget _emailField(BuildContext context) {
     return TextField(
-      controller: emailEditingController,
+      controller: _emailEditingCon,
       style: TextStyle(color: AppColors.bigtext, fontSize: DSH(18)),
       decoration: const InputDecoration(
         hintText: "Enter email",
@@ -58,7 +60,13 @@ class Signinpage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BaseAppButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordpage());
+        AppNavigator.push(
+          context,
+          EnterPasswordpage(
+            signinReq: UserSigninReq(email: _emailEditingCon.text),
+          ),
+        );
+        print(_emailEditingCon.text);
       },
       title: "Continue",
     );
@@ -73,7 +81,7 @@ class Signinpage extends StatelessWidget {
           TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  AppNavigator.push(context,  Signuppage());
+                  AppNavigator.push(context, Signuppage());
                 },
               text: "Create one",
               style: TextStyle(fontWeight: FontWeight.bold)),

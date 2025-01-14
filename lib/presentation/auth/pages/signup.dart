@@ -6,7 +6,6 @@ import '../../../common/widget/appbar/app_bar.dart';
 import '../../../common/widget/button/base_app_button.dart';
 import '../../../data/auth/models/user_creation_req.dart';
 import '../../../responsive/dimension.dart';
-import 'enter_password.dart';
 import 'gender_and_age_selection.dart';
 import 'signin.dart';
 
