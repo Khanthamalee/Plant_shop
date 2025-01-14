@@ -9,9 +9,10 @@ import 'enter_password.dart';
 import 'signup.dart';
 
 class Signinpage extends StatelessWidget {
-  const Signinpage({super.key});
+  Signinpage({super.key});
 
   @override
+  TextEditingController emailEditingController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const BasicAppBar(hideBack: true),
@@ -46,6 +47,7 @@ class Signinpage extends StatelessWidget {
 
   Widget _emailField(BuildContext context) {
     return TextField(
+      controller: emailEditingController,
       style: TextStyle(color: AppColors.bigtext, fontSize: DSH(18)),
       decoration: const InputDecoration(
         hintText: "Enter email",
@@ -65,15 +67,16 @@ class Signinpage extends StatelessWidget {
   Widget _createAccount(BuildContext context) {
     return RichText(
       text: TextSpan(
+        style: TextStyle(fontFamily: 'BreeSerif'),
         children: [
-          const TextSpan(text: "Don't you have an account?  "),
+          TextSpan(text: "Don't you have an account?  "),
           TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   AppNavigator.push(context, const Signuppage());
                 },
               text: "Create one",
-              style: const TextStyle(fontWeight: FontWeight.bold)),
+              style: TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
     );

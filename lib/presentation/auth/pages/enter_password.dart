@@ -1,6 +1,7 @@
 import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
 import 'package:firebase_shop/presentation/auth/pages/forgot_password.dart';
+import 'package:firebase_shop/presentation/auth/pages/gender_and_age_selection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,9 @@ class EnterPasswordpage extends StatelessWidget {
 
   Widget _continueButton(BuildContext context) {
     return BaseAppButton(
-      onPressed: () {},
+      onPressed: () {
+        AppNavigator.push(context, GenderAndAgeSelectionPage());
+      },
       title: "Continue",
     );
   }
@@ -63,6 +66,7 @@ class EnterPasswordpage extends StatelessWidget {
   Widget _forgotPassword(BuildContext context) {
     return RichText(
       text: TextSpan(
+        style: TextStyle(fontFamily: 'BreeSerif'),
         children: [
           const TextSpan(text: "Forgot password?  "),
           TextSpan(

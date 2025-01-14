@@ -5,8 +5,11 @@ import '../../../domain/Auth/repository/auth.dart';
 import 'package:firebase_shop/service_locator.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
-  @override
   Future<Either> signup(UserCreationReq user) async {
-    return sl<AuthFirebaseService>().signup(user);
+    return await sl<AuthFirebaseService>().signup(user);
+  }
+
+  Future<Either> getAges() async {
+    return await sl<AuthFirebaseService>().getAges();
   }
 }
