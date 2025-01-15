@@ -15,15 +15,15 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<Splashcubit, Splashstate>(
       listener: (context, state) {
         if (state is UnAuthenticated) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) =>  Signinpage()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Signinpage()));
         }
       },
       child: Scaffold(
         backgroundColor: AppColors.background,
         body: Center(
           child: SvgPicture.asset(
-            AppVector.AppLogo,
+            AppVectors.AppLogo,
             color: AppColors.primary,
           ),
         ),

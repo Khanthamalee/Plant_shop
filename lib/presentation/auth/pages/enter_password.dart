@@ -35,6 +35,7 @@ class EnterPasswordpage extends StatelessWidget {
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackbar);
                 }
+                if (state is ButtonSuccessState) {}
               },
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -100,7 +101,7 @@ class EnterPasswordpage extends StatelessWidget {
           TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  AppNavigator.push(context, const ForgotPassword());
+                  AppNavigator.push(context,  ForgotPassword());
                 },
               text: "Reset",
               style: const TextStyle(fontWeight: FontWeight.bold)),
