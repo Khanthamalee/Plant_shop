@@ -3,6 +3,7 @@ import 'package:firebase_shop/common/widget/button/basic_reactive_button.dart.da
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
 import 'package:firebase_shop/domain/Auth/usecases/signin.dart';
 import 'package:firebase_shop/presentation/auth/pages/forgot_password.dart';
+import 'package:firebase_shop/presentation/home/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,9 @@ class EnterPasswordpage extends StatelessWidget {
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackbar);
                 }
-                if (state is ButtonSuccessState) {}
+                if (state is ButtonSuccessState) {
+                  AppNavigator.pushAndRemove(context, HomePage());
+                }
               },
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -101,7 +104,7 @@ class EnterPasswordpage extends StatelessWidget {
           TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  AppNavigator.push(context,  ForgotPassword());
+                  AppNavigator.push(context, ForgotPassword());
                 },
               text: "Reset",
               style: const TextStyle(fontWeight: FontWeight.bold)),

@@ -1,3 +1,4 @@
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/presentation/splash/bloc/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/configs/assets/app_vector.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../auth/pages/signin.dart';
+import '../../home/home.dart';
 import '../bloc/splash_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -15,8 +17,10 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<Splashcubit, Splashstate>(
       listener: (context, state) {
         if (state is UnAuthenticated) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Signinpage()));
+          AppNavigator.pushReplacement(context, Signinpage());
+        }
+        if (state is Authenticated) {
+          AppNavigator.pushReplacement(context, const HomePage());
         }
       },
       child: Scaffold(
