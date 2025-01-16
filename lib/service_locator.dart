@@ -2,6 +2,7 @@ import 'package:firebase_shop/data/auth/repository/auth_repository_impl.dart';
 import 'package:firebase_shop/data/auth/source/auth_firebase_service.dart';
 import 'package:firebase_shop/domain/Auth/repository/auth.dart';
 import 'package:firebase_shop/domain/Auth/usecases/get_ages.dart';
+import 'package:firebase_shop/domain/Auth/usecases/get_user.dart';
 import 'package:firebase_shop/domain/Auth/usecases/is_logged_in.dart';
 import 'package:firebase_shop/domain/Auth/usecases/send_password_reset_email.dart';
 import 'package:firebase_shop/domain/Auth/usecases/signin.dart';
@@ -24,4 +25,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SendPasswordResetEmailUsecase>(
       SendPasswordResetEmailUsecase());
   sl.registerSingleton<IsLoggedIn>(IsLoggedIn());
+  sl.registerSingleton<GetUserUsecase>(GetUserUsecase());
 }
