@@ -18,6 +18,7 @@ class Header extends StatelessWidget {
       child: BlocBuilder<UserInfoDisplayCubit, UserInfoDisplayState>(
         builder: (context, state) {
           if (state is UserInfoLoading) {
+            print("state : $state");
             return Center(child: CircularProgressIndicator());
           }
           if (state is UserInfoLoaded) {
@@ -37,14 +38,13 @@ class Header extends StatelessWidget {
       height: DSH(40),
       width: DSW(40),
       decoration: BoxDecoration(
-          color: Colors.redAccent,
-          shape: BoxShape.circle,
-          image: DecorationImage(image: AssetImage(AppVectors.send_email))
-          // image: DecorationImage(
-          //     image: user.image.isEmpty
-          //         ? AssetImage(AppVectors.send_email)
-          //         : NetworkImage(user.image)),
-          ),
+        color: Colors.redAccent,
+        shape: BoxShape.circle,
+        //image: DecorationImage(image: AssetImage(AppVectors.send_email))
+        // image: DecorationImage(
+        //     image: NetworkImage(user.image) ??
+        //         AssetImage("${AppVectors.send_email}")),
+      ),
     );
   }
 

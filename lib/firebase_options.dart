@@ -41,49 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCVJibCVgqIKVIaK8J_gcXpuSYdp1y3YMo',
-    appId: '1:91554586988:web:48d087753328689f605349',
-    messagingSenderId: '91554586988',
-    projectId: 'fir-shop-f7c59',
-    authDomain: 'fir-shop-f7c59.firebaseapp.com',
-    storageBucket: 'fir-shop-f7c59.appspot.com',
-    measurementId: 'G-LQDQLE7NEZ',
+    apiKey: 'AIzaSyCClU_mb0_N1_7yqjH_TULTIYpJ6M9ZNkA',
+    appId: '1:546309141919:web:50b439c926603cf6b0f9aa',
+    messagingSenderId: '546309141919',
+    projectId: 'plantshop-481b3',
+    authDomain: 'plantshop-481b3.firebaseapp.com',
+    storageBucket: 'plantshop-481b3.firebasestorage.app',
+    measurementId: 'G-LXRNJ6Q8VL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDK_w8G-bVH8v2XtFNB1aDa8LWY8TCwG7k',
-    appId: '1:91554586988:android:b4253f7bdaac10c9605349',
-    messagingSenderId: '91554586988',
-    projectId: 'fir-shop-f7c59',
-    storageBucket: 'fir-shop-f7c59.appspot.com',
+    apiKey: 'AIzaSyCV_wy-2lL62gT_GCRF45VGWCimdx97FnQ',
+    appId: '1:546309141919:android:327681d2097a9e82b0f9aa',
+    messagingSenderId: '546309141919',
+    projectId: 'plantshop-481b3',
+    storageBucket: 'plantshop-481b3.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBQguFh78Y7PTgj3bsiYy4Gy-2whsD8m48',
-    appId: '1:91554586988:ios:08aa84e912034ce5605349',
-    messagingSenderId: '91554586988',
-    projectId: 'fir-shop-f7c59',
-    storageBucket: 'fir-shop-f7c59.appspot.com',
+    apiKey: 'AIzaSyAhyCKELxBeb_ROBVVpN-iemw6Z1TJBAQA',
+    appId: '1:546309141919:ios:cf80eea40f0a1ca1b0f9aa',
+    messagingSenderId: '546309141919',
+    projectId: 'plantshop-481b3',
+    storageBucket: 'plantshop-481b3.firebasestorage.app',
     iosBundleId: 'com.example.firebaseShop',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBQguFh78Y7PTgj3bsiYy4Gy-2whsD8m48',
-    appId: '1:91554586988:ios:08aa84e912034ce5605349',
-    messagingSenderId: '91554586988',
-    projectId: 'fir-shop-f7c59',
-    storageBucket: 'fir-shop-f7c59.appspot.com',
+    apiKey: 'AIzaSyAhyCKELxBeb_ROBVVpN-iemw6Z1TJBAQA',
+    appId: '1:546309141919:ios:cf80eea40f0a1ca1b0f9aa',
+    messagingSenderId: '546309141919',
+    projectId: 'plantshop-481b3',
+    storageBucket: 'plantshop-481b3.firebasestorage.app',
     iosBundleId: 'com.example.firebaseShop',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCVJibCVgqIKVIaK8J_gcXpuSYdp1y3YMo',
-    appId: '1:91554586988:web:a9779ff462c17b80605349',
-    messagingSenderId: '91554586988',
-    projectId: 'fir-shop-f7c59',
-    authDomain: 'fir-shop-f7c59.firebaseapp.com',
-    storageBucket: 'fir-shop-f7c59.appspot.com',
-    measurementId: 'G-RC44DZSFS0',
+    apiKey: 'AIzaSyCClU_mb0_N1_7yqjH_TULTIYpJ6M9ZNkA',
+    appId: '1:546309141919:web:c02eb59abf154daab0f9aa',
+    messagingSenderId: '546309141919',
+    projectId: 'plantshop-481b3',
+    authDomain: 'plantshop-481b3.firebaseapp.com',
+    storageBucket: 'plantshop-481b3.firebasestorage.app',
+    measurementId: 'G-EZYB822CGN',
   );
 
 }

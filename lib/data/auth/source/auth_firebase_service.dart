@@ -97,13 +97,28 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   Future<Either> getUser() async {
     try {
       var currentUser = FirebaseAuth.instance.currentUser;
+      var currentU = FirebaseAuth.instance.currentUser?.uid;
+      var currentE = FirebaseAuth.instance.currentUser?.email;
+      print("currentUser : ${currentUser}");
+      print("currentU : $currentU");
+      print("currentE : $currentE");
+
       var userData = await FirebaseFirestore.instance
           .collection('Users')
           .doc(currentUser?.uid)
           .get()
           .then((value) => value.data());
-      print(userData);
-      return Right(userData);
+      if (userData != null) {
+        // this will check availability of document
+        var lastName = userData['lastName'];
+        var firstName = userData['firstName'];
+        print("$lastName $firstName");
+      } else {
+        print("User is not available");
+      }
+
+      print("userData : ${userData}");
+      return Right(userData.toString());
     } catch (e) {
       return Left('Please try again');
     }
