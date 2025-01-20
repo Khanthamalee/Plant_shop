@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/configs/assets/app_vector.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../auth/pages/signin.dart';
-import '../../home/home.dart';
+import '../../home/pages/home.dart';
 import '../bloc/splash_cubit.dart';
 
 class SplashScreen extends StatelessWidget {

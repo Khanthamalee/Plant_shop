@@ -3,7 +3,7 @@ import 'package:firebase_shop/common/widget/button/basic_reactive_button.dart.da
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
 import 'package:firebase_shop/domain/Auth/usecases/signin.dart';
 import 'package:firebase_shop/presentation/auth/pages/forgot_password.dart';
-import 'package:firebase_shop/presentation/home/home.dart';
+import 'package:firebase_shop/presentation/home/pages/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
