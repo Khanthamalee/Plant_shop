@@ -40,8 +40,18 @@ class AuthRepositoryImpl extends AuthRepository {
         return Left(error);
       },
       (data) {
-        print("data : $data");
-        return Right(UserModel.fromJson(data).toEntity());
+        print("data : ${data.runtimeType}");
+        print("data input Right : ${data["firstName"]}");
+        print("data input Right : ${data.toString().runtimeType}");
+        return Right(UserModel.fromJson({
+            "userId": data["userId"],
+          "firstName": data["firstName"],
+          "lastName": data["lastName"],
+          "email": data["email"],
+          "gender": data["gender"],
+          "image": data["image"]
+        })
+            .toEntity());
       },
     );
   }

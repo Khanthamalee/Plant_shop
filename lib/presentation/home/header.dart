@@ -22,6 +22,7 @@ class Header extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (state is UserInfoLoaded) {
+            print("state : $state");
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [_profileImage(state.user), _gender(), _card()],

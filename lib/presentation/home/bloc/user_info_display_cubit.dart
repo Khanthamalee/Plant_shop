@@ -11,6 +11,7 @@ class UserInfoDisplayCubit extends Cubit<UserInfoDisplayState> {
     returnedDate.fold((error) {
       emit(LoadUserInfoFailure());
     }, (data) {
+      print("data in UserInfoDisplayCubit : ${data}");
       emit(UserInfoLoaded(user: data));
     });
   }

@@ -18,7 +18,7 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> signup(UserCreationReq user) async {
     try {
-      var ReturnedData = await FirebaseAuth.instance
+      UserCredential ReturnedData = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: user.email!, password: user.password!);
 
@@ -104,21 +104,22 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
       print("currentE : $currentE");
 
       var userData = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection('user')
           .doc(currentUser?.uid)
           .get()
           .then((value) => value.data());
+
       if (userData != null) {
         // this will check availability of document
-        var lastName = userData['lastName'];
-        var firstName = userData['firstName'];
-        print("$lastName $firstName");
+        userData["userId"] = currentU;
+        //print("userData : ${userData}");
       } else {
         print("User is not available");
       }
 
       print("userData : ${userData}");
-      return Right(userData.toString());
+      print("userData.runtimeType : ${userData.runtimeType}");
+      return Right(userData);
     } catch (e) {
       return Left('Please try again');
     }
