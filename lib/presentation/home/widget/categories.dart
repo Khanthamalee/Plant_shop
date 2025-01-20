@@ -75,9 +75,10 @@ class Categories extends StatelessWidget {
             children: [
               Container(
                 height: DSH(70),
-                width: DSW(60),
+                width: DSW(40),
                 decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(DSH(10)),
+                  //shape: BoxShape.rectangle,
                   color: Colors.white,
                   image: DecorationImage(
                     image: AssetImage(categories[index].image),
@@ -86,13 +87,13 @@ class Categories extends StatelessWidget {
               ),
               _height(context),
               SizedBox(
-                width: DSW(60),
+                width: DSW(40),
                 child: Text(
                   "${categories[index].title}",
                   style:
-                      TextStyle(fontSize: DSH(14), fontWeight: FontWeight.w300),
+                      TextStyle(fontSize: DSH(12), fontWeight: FontWeight.w300),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  maxLines: 3,
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -5,6 +5,6 @@ class AppVectors {
   static const send_email = 'assets/images/send-email.png';
   static const men = 'assets/images/men.png';
   static const woman = 'assets/images/woman.png';
-  static const cart = 'images/shopping-cart.png';
-  static const search = 'images/search.png';
+  static const cart = 'assets/images/shopping-cart.png';
+  static const search = 'assets/images/search.png';
 }

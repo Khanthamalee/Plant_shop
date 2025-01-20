@@ -60,6 +60,7 @@ flutter:
      - assets/images/
      - assets/fonts/
      - assets/logo/
+     - assets/category/
   fonts:
     - family: BreeSerif
       fonts:
