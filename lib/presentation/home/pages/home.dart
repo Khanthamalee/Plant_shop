@@ -4,6 +4,7 @@ import '../../../responsive/dimension.dart';
 import '../widget/categories.dart';
 import '../widget/header.dart';
 import '../widget/search_field.dart';
+import '../widget/top_selling.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,7 +21,9 @@ class HomePage extends StatelessWidget {
           _height(context),
           SearchField(),
           _height(context),
-          Categories()
+          Categories(),
+          _height(context),
+          TopSelling()
         ],
       ),
     );

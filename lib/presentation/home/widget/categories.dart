@@ -22,7 +22,7 @@ class Categories extends StatelessWidget {
         }
         if (state is CategoriesisLoaded) {
           return Padding(
-            padding: EdgeInsets.only(left: DSH(30), right: DSH(30)),
+            padding: EdgeInsets.only(left: DSW(15), right: DSW(15)),
             child: SizedBox(
               child: Column(
                 children: [
@@ -65,7 +65,7 @@ class Categories extends StatelessWidget {
 
   Widget _categories(List<CategoryEntity> categories, BuildContext context) {
     return SizedBox(
-      height: DSH(150),
+      height: DSH(135),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -74,15 +74,16 @@ class Categories extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: DSH(70),
-                width: DSW(40),
+                height: DSH(65),
+                width: DSW(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(DSH(10)),
                   //shape: BoxShape.rectangle,
+
                   color: Colors.white,
                   image: DecorationImage(
-                    image: AssetImage(categories[index].image),
-                  ),
+                      image: AssetImage(categories[index].image),
+                      fit: BoxFit.fill),
                 ),
               ),
               _height(context),
