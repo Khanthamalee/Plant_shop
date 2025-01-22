@@ -7,4 +7,5 @@ class AppColors {
   static const backgroundsecondary = Color.fromARGB(255, 11, 117, 95);
   static const secondary = Color(0xff17202a);
   static const tertiary = Color.fromARGB(255, 40, 55, 72);
+  static const textsecondary = Color(0xff2cec90);
 }

@@ -3,6 +3,7 @@ import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/product/entities/product.dart';
 import '../bloc/new_in_display_state.dart';
 
@@ -54,7 +55,10 @@ class NewIn extends StatelessWidget {
   Widget _newInText() {
     return Text(
       "New In",
-      style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500),
+      style: TextStyle(
+          fontSize: DSH(16),
+          fontWeight: FontWeight.w500,
+          color: AppColors.textsecondary),
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/product/entities/product.dart';
 
 class TopSelling extends StatelessWidget {
@@ -55,14 +56,14 @@ class TopSelling extends StatelessWidget {
   Widget _topSellingText() {
     return Text(
       "Top selling",
-      style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500),
+      style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500,color: AppColors.textsecondary),
     );
   }
 
   Widget _topSellingList(List<ProductEntity> products, BuildContext context) {
     print("products $products");
     return SizedBox(
-      height: DSH(250),
+      height: DSH(230),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {

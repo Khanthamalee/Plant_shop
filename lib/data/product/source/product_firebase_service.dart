@@ -30,7 +30,7 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
           .collection('products')
           .where('createDate',
               isGreaterThanOrEqualTo: Timestamp.fromDate(
-                  DateTime(2025, 1, DateTime.timestamp().day - 7)))
+                  DateTime(2025, 1, DateTime.timestamp().day)))
           .get();
       print(
           "returnedData.docs.map((e) => e.data()) :${returnedData.docs.map((e) => e.data())}");

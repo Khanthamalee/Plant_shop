@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/bloc/button/category/categories_display_cubit.dart';
 import '../../../common/bloc/button/category/categories_display_state.dart';
+import '../../../common/helper/Navigator/app_navigator.dart';
+import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
+import '../../all_categories/pages/all_categories.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -26,7 +29,7 @@ class Categories extends StatelessWidget {
             child: SizedBox(
               child: Column(
                 children: [
-                  _seeAll(),
+                  _seeAll(context),
                   _height(context),
                   _categories(state.categories, context),
                 ],
@@ -47,17 +50,25 @@ class Categories extends StatelessWidget {
     return WW(context, 15);
   }
 
-  Widget _seeAll() {
+  Widget _seeAll(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           "Categories",
-          style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500),
+          style: TextStyle(
+              fontSize: DSH(16),
+              fontWeight: FontWeight.w500,
+              color: AppColors.textsecondary),
         ),
-        Text(
-          "See All",
-          style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500),
+        GestureDetector(
+          onTap: () {
+            AppNavigator.push(context, AllCategories());
+          },
+          child: Text(
+            "See All",
+            style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500),
+          ),
         ),
       ],
     );
