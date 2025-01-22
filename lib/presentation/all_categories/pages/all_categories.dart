@@ -1,12 +1,14 @@
-import 'package:firebase_shop/common/bloc/button/category/categories_display_cubit.dart';
+import 'package:firebase_shop/common/bloc/category/categories_display_cubit.dart';
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/bloc/button/category/categories_display_state.dart';
+import '../../../common/bloc/category/categories_display_state.dart';
+import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../common/widget/appbar/app_bar.dart';
 import '../../../domain/category/entity/category.dart';
 import '../../../responsive/dimension.dart';
+import '../../category_products/pages/category_products.dart';
 
 class AllCategories extends StatelessWidget {
   const AllCategories({super.key});
@@ -63,54 +65,59 @@ class AllCategories extends StatelessWidget {
       List<CategoryEntity> categories, BuildContext context) {
     print(categories);
     return SizedBox(
-      height: DSH(800),
+      height: DSH(740),
       child: ListView.separated(
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          return Container(
-            color: AppColors.backgroundsecondary,
-            width: double.infinity,
-            height: DSH(100),
-            child: Row(children: [
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.all(DSH(8)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(DSH(10)),
-                      //shape: BoxShape.rectangle,
-
-                      color: Colors.white,
-                      image: DecorationImage(
-                          image: AssetImage(categories[index].image),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 6,
-                child: SizedBox(
+          return GestureDetector(
+            onTap: (){
+              AppNavigator.push(context, CategoryProducts(categoryId: categories[index].categoryId,));
+            },
+            child: Container(
+              color: AppColors.backgroundsecondary,
+              width: double.infinity,
+              height: DSH(100),
+              child: Row(children: [
+                Expanded(
+                  flex: 2,
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        left: DSW(10),
-                        right: DSW(10),
-                        top: DSH(8),
-                        bottom: DSH(8)),
-                    child: Text(
-                      //"Food risk managemant book Food risk managemant book Food risk managemant book",
-                      "${categories[index].title}",
-                      style: TextStyle(
-                          fontSize: DSH(16), fontWeight: FontWeight.w200),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      textAlign: TextAlign.start,
+                    padding: EdgeInsets.all(DSH(8)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(DSH(10)),
+                        //shape: BoxShape.rectangle,
+            
+                        color: Colors.white,
+                        image: DecorationImage(
+                            image: AssetImage(categories[index].image),
+                            fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                 ),
-              )
-            ]),
+                Expanded(
+                  flex: 6,
+                  child: SizedBox(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: DSW(10),
+                          right: DSW(10),
+                          top: DSH(8),
+                          bottom: DSH(8)),
+                      child: Text(
+                        //"Food risk managemant book Food risk managemant book Food risk managemant book",
+                        "${categories[index].title}",
+                        style: TextStyle(
+                            fontSize: DSH(16), fontWeight: FontWeight.w200),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ),
+                )
+              ]),
+            ),
           );
         },
         itemCount: categories.length,

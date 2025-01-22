@@ -2,8 +2,8 @@ import 'package:firebase_shop/domain/category/entity/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/bloc/button/category/categories_display_cubit.dart';
-import '../../../common/bloc/button/category/categories_display_state.dart';
+import '../../../common/bloc/category/categories_display_cubit.dart';
+import '../../../common/bloc/category/categories_display_state.dart';
 import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
