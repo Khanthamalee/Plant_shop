@@ -13,27 +13,19 @@ class ProductRepositoryImpl extends ProductRepository {
     return returnedDate.fold((error) {
       return Left(error);
     }, (data) {
-      // List returnedDate = [];
-      // for (var i in data) {
-      //   returnedDate.add({
-      //     "image": i["image"],
-      //     "productId": i["productId"],
-      //     "member": {
-      //       "general": {
-      //         "discountedPrice": i["member"]["general"]["discountedPrice"]
-      //       },
-      //       "VIP": {"discountedPrice": i["member"]["VIP"]["discountedPrice"]}
-      //     },
-      //     "Bookno": i["Bookno"],
-      //     "sellno": i["sellno"],
-      //     "title": i["title"],
-      //     "categoryId": i["categoryId"],
-      //     "createDate": i["createDate"]
-      //   });
-      // }
+      return Right(List.from(data)
+          .map((e) => ProductModel.fromMap(e).toEntity())
+          .toList());
+    });
+  }
 
-      // print("returnedDate : ${returnedDate}");
-      // print("returnedDate : ${returnedDate}");
+  @override
+  Future<Either> getNewIn() async {
+    var returnedDate = await sl<ProductFirebaseService>().getNewIn();
+
+    return returnedDate.fold((error) {
+      return Left(error);
+    }, (data) {
       return Right(List.from(data)
           .map((e) => ProductModel.fromMap(e).toEntity())
           .toList());
