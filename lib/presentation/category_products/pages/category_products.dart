@@ -1,4 +1,5 @@
 import 'package:firebase_shop/common/bloc/product/product_display_state.dart';
+import 'package:firebase_shop/domain/category/entity/category.dart';
 import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:firebase_shop/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,9 @@ import '../../../domain/product/entities/product.dart';
 import '../../../domain/product/usecases/get_products_by_categoryId.dart';
 
 class CategoryProducts extends StatelessWidget {
-  final String categoryId;
+  final CategoryEntity categoryEntity;
 
-  const CategoryProducts({super.key, required this.categoryId});
+  const CategoryProducts({super.key, required this.categoryEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CategoryProducts extends StatelessWidget {
         body: BlocProvider(
             create: (context) => ProductsDisplayCubit(
                 usecase: sl<GetProductsByCategoryidUseCase>())
-              ..displayProducts(params: categoryId),
+              ..displayProducts(params: categoryEntity.categoryId),
             child: BlocBuilder<ProductsDisplayCubit, ProductsDisplayState>(
               builder: (context, state) {
                 if (state is ProductsisLoading) {
@@ -65,16 +66,20 @@ class CategoryProducts extends StatelessWidget {
     print(products);
     return SizedBox(
       height: DSH(740),
-      child: ListView.separated(
-        scrollDirection: Axis.vertical,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: DSW(8.0),
+            crossAxisSpacing: DSW(8.0),
+            childAspectRatio: 0.8),
         itemBuilder: (context, index) {
           return Container(
             color: AppColors.backgroundsecondary,
-            width: double.infinity,
-            height: DSH(100),
-            child: Row(children: [
+            //width: double.infinity,
+            height: DSH(500),
+            child: Column(children: [
               Expanded(
-                flex: 2,
+                flex: 7,
                 child: Padding(
                   padding: EdgeInsets.all(DSH(8)),
                   child: Container(
@@ -91,7 +96,7 @@ class CategoryProducts extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 6,
+                flex: 2,
                 child: SizedBox(
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -106,7 +111,7 @@ class CategoryProducts extends StatelessWidget {
                           fontSize: DSH(16), fontWeight: FontWeight.w200),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -114,11 +119,10 @@ class CategoryProducts extends StatelessWidget {
             ]),
           );
         },
+        // separatorBuilder: (BuildContext context, int index) {
+        //   return _height(context);
+        //},
         itemCount: products.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return _height(context);
-        },
-        // itemCount: categories.length,
       ),
     );
   }

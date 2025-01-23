@@ -30,8 +30,10 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
       var returnedData = await FirebaseFirestore.instance
           .collection('products')
           .where('createDate',
-              isGreaterThanOrEqualTo: Timestamp.fromDate(
-                  DateTime(2025, 1, DateTime.timestamp().day)))
+              isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime(
+                  DateTime.timestamp().year,
+                  DateTime.timestamp().month - 1,
+                  DateTime.timestamp().day)))
           .get();
       print(
           "returnedData.docs.map((e) => e.data()) :${returnedData.docs.map((e) => e.data())}");

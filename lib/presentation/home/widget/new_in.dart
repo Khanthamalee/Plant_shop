@@ -54,7 +54,7 @@ class NewIn extends StatelessWidget {
 
   Widget _newInText() {
     return Text(
-      "New In",
+      "New In of Month",
       style: TextStyle(
           fontSize: DSH(16),
           fontWeight: FontWeight.w500,

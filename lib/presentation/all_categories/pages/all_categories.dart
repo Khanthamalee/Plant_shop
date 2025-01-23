@@ -70,8 +70,12 @@ class AllCategories extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: (){
-              AppNavigator.push(context, CategoryProducts(categoryId: categories[index].categoryId,));
+            onTap: () {
+              AppNavigator.push(
+                  context,
+                  CategoryProducts(
+                    categoryEntity: categories[index],
+                  ));
             },
             child: Container(
               color: AppColors.backgroundsecondary,
@@ -86,7 +90,7 @@ class AllCategories extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(DSH(10)),
                         //shape: BoxShape.rectangle,
-            
+
                         color: Colors.white,
                         image: DecorationImage(
                             image: AssetImage(categories[index].image),
