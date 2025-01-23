@@ -45,4 +45,18 @@ class ProductRepositoryImpl extends ProductRepository {
           .toList());
     });
   }
+
+  @override
+  Future<Either> getProductByTitle(String title) async {
+    var returnedDate =
+        await sl<ProductFirebaseService>().getProductByTitle(title);
+
+    return returnedDate.fold((error) {
+      return Left(error);
+    }, (data) {
+      return Right(List.from(data)
+          .map((e) => ProductModel.fromMap(e).toEntity())
+          .toList());
+    });
+  }
 }

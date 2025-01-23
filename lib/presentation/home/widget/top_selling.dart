@@ -63,7 +63,7 @@ class TopSelling extends StatelessWidget {
   Widget _topSellingList(List<ProductEntity> products, BuildContext context) {
     print("products $products");
     return SizedBox(
-      height: DSH(230),
+      height: DSH(210),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -72,7 +72,7 @@ class TopSelling extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: DSH(160),
+                height: DSH(140),
                 width: DSW(55),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(DSH(10)),

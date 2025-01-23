@@ -5,6 +5,8 @@ import '../../../responsive/dimension.dart';
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final Widget? action;
+  final double? hetght;
+  final double? width;
   final Color? backgroundColor;
   final bool hideBack;
   const BasicAppBar(
@@ -12,7 +14,9 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.action,
       this.backgroundColor,
       this.hideBack = false,
-      super.key});
+      super.key,
+      this.hetght,
+      this.width});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -22,6 +26,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
+      titleSpacing: DSW(-11),
       centerTitle: true,
       title: title ?? const Text(''),
       actions: [action ?? Container()],
@@ -32,8 +37,8 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pop(context);
               },
               icon: Container(
-                height: DSH(50),
-                width: DSH(50),
+                height: DSH(hetght ?? 50),
+                width: DSW(width ?? 50),
                 decoration: const BoxDecoration(
                     color: AppColors.secondary, shape: BoxShape.circle),
                 child: Icon(

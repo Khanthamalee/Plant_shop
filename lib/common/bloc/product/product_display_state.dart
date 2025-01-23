@@ -2,6 +2,9 @@ import 'package:firebase_shop/domain/product/entities/product.dart';
 
 abstract class ProductsDisplayState {}
 
+
+class ProductsInitailState extends ProductsDisplayState{}
+
 class ProductsisLoading extends ProductsDisplayState {}
 
 class ProductsisLoaded extends ProductsDisplayState {
