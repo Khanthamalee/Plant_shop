@@ -90,9 +90,9 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
   Widget _gender(context) {
     return BlocBuilder<GenderSelectionCubit, int>(builder: (context, state) {
       return Row(children: [
-        genderTile(context, 1, "Men"),
+        genderTile(context, 1, "General"),
         _widtht(context),
-        genderTile(context, 2, "Woman"),
+        genderTile(context, 2, "VIP"),
       ]);
     });
   }

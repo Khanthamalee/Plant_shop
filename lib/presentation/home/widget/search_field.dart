@@ -5,6 +5,7 @@ import 'package:firebase_shop/core/configs/assets/app_vector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
 import '../../search/pages/search.dart';
 
@@ -19,11 +20,19 @@ class SearchField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: DSW(15), right: DSW(15)),
       child: TextField(
-        onChanged: (value) {
-          
-          context.read<ProductsDisplayCubit>().displayProducts(params: value);
-        },
-        decoration: InputDecoration(
+          onChanged: (value) {
+            if (value.isEmpty) {
+              context.read<ProductsDisplayCubit>().diaplayInitial();
+            } else {
+              context
+                  .read<ProductsDisplayCubit>()
+                  .displayProducts(params: value);
+            }
+          },
+          cursorColor: AppColors.backgroundsecondary,
+          decoration: InputDecoration(
+            //prefixIconColor: AppColors.backgroundsecondary,
+            //suffixIconColor: AppColors.backgroundsecondary,
             contentPadding: EdgeInsets.all(DSH(12)),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
@@ -53,8 +62,11 @@ class SearchField extends StatelessWidget {
                 ),
               ),
             ),
-            hintText: 'search'),
-      ),
+            hintText: 'search',
+          ),
+          style: TextStyle(
+            color: AppColors.secondary,
+          )),
     );
   }
 }

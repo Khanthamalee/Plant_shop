@@ -70,7 +70,7 @@ class Header extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          user.gender == 1 ? "Men" : "Woman",
+          user.gender == 1 ? "General" : "VIP",
           style: TextStyle(fontSize: DSH(20), fontWeight: FontWeight.w500),
         ),
       ),

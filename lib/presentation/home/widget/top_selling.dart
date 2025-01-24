@@ -1,10 +1,10 @@
-import 'package:firebase_shop/data/product/models/product.dart';
 import 'package:firebase_shop/presentation/home/bloc/top_selling_display_cubit.dart';
 import 'package:firebase_shop/presentation/home/bloc/top_selling_display_state.dart';
 import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/product/entities/product.dart';
 
@@ -56,7 +56,10 @@ class TopSelling extends StatelessWidget {
   Widget _topSellingText() {
     return Text(
       "Top selling",
-      style: TextStyle(fontSize: DSH(16), fontWeight: FontWeight.w500,color: AppColors.textsecondary),
+      style: TextStyle(
+          fontSize: DSH(16),
+          fontWeight: FontWeight.w500,
+          color: AppColors.textsecondary),
     );
   }
 
@@ -71,19 +74,7 @@ class TopSelling extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: DSH(140),
-                width: DSW(55),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(DSH(10)),
-                  //shape: BoxShape.rectangle,
-
-                  color: Colors.white,
-                  image: DecorationImage(
-                      image: AssetImage(products[index].image[0]),
-                      fit: BoxFit.fill),
-                ),
-              ),
+              ProductCard(productEntity: products[index]),
               _height(context),
               SizedBox(
                 width: DSW(50),

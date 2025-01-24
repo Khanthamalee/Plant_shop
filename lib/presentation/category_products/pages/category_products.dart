@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../common/bloc/product/product_display_cubit.dart';
 import '../../../common/widget/appbar/app_bar.dart';
+import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/product/entities/product.dart';
 import '../../../domain/product/usecases/get_products_by_categoryId.dart';
@@ -71,7 +72,7 @@ class CategoryProducts extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: DSW(8.0),
             crossAxisSpacing: DSW(8.0),
-            childAspectRatio: 0.8),
+            childAspectRatio: 0.9),
         itemBuilder: (context, index) {
           return Container(
             color: AppColors.backgroundsecondary,
@@ -79,20 +80,10 @@ class CategoryProducts extends StatelessWidget {
             height: DSH(500),
             child: Column(children: [
               Expanded(
-                flex: 7,
+                flex: 4,
                 child: Padding(
                   padding: EdgeInsets.all(DSH(8)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(DSH(10)),
-                      //shape: BoxShape.rectangle,
-
-                      color: Colors.white,
-                      image: DecorationImage(
-                          image: AssetImage(products[index].image[0]),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
+                  child: ProductCard(productEntity: products[index]),
                 ),
               ),
               Expanded(

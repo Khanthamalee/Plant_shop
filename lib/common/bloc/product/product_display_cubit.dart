@@ -16,4 +16,8 @@ class ProductsDisplayCubit extends Cubit<ProductsDisplayState> {
       emit(ProductsisLoaded(products: data));
     });
   }
+
+  void diaplayInitial() {
+    emit(ProductsInitailState());
+  }
 }
