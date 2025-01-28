@@ -2,11 +2,12 @@ import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configs/theme/app_color.dart';
-import '../../../domain/product/entities/product.dart';
-
 class ProductPrice extends StatelessWidget {
-  final ProductEntity productEntity;
-  const ProductPrice({super.key, required this.productEntity});
+  final String price;
+  const ProductPrice({
+    super.key,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,12 @@ class ProductPrice extends StatelessWidget {
   }
 
   Widget _price() {
+    // double discountedgen =
+    //     double.parse(productEntity.memberModel.general.discountedPrice);
+    // double discountedvip =
+    //     double.parse(productEntity.memberModel.VIP.discountedPrice);
     return Text(
-      "Baht 4,999 ",
+      price,
       style: TextStyle(
           fontSize: DSH(16),
           fontWeight: FontWeight.w500,

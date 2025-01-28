@@ -7,11 +7,13 @@ import '../../../common/bloc/category/categories_display_state.dart';
 import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../common/widget/appbar/app_bar.dart';
 import '../../../domain/category/entity/category.dart';
+import '../../../domain/entity/user.dart';
 import '../../../responsive/dimension.dart';
 import '../../category_products/pages/category_products.dart';
 
 class AllCategories extends StatelessWidget {
-  const AllCategories({super.key});
+  final UserEntity user;
+  const AllCategories({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +77,7 @@ class AllCategories extends StatelessWidget {
                   context,
                   CategoryProducts(
                     categoryEntity: categories[index],
+                    user: user,
                   ));
             },
             child: Container(

@@ -2,11 +2,10 @@ import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configs/theme/app_color.dart';
-import '../../../domain/product/entities/product.dart';
 
 class ProductTitle extends StatelessWidget {
-  final ProductEntity productEntity;
-  const ProductTitle({super.key, required this.productEntity});
+  final String title;
+  const ProductTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +15,14 @@ class ProductTitle extends StatelessWidget {
       ],
     );
   }
+
   Widget _title() {
     return Text(
-      "Edible and the wild plants Book",
+      "${title}",
       style: TextStyle(
-          fontSize: DSH(20),
+          fontSize: DSH(18),
           fontWeight: FontWeight.w500,
           color: AppColors.primary),
     );
   }
-
-  
 }

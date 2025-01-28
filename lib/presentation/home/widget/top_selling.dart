@@ -6,10 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
+import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 
 class TopSelling extends StatelessWidget {
-  const TopSelling({super.key});
+  
+  final UserEntity user;
+  const TopSelling({super.key,required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class TopSelling extends StatelessWidget {
                 children: [
                   _topSellingText(),
                   _height(context),
-                  _topSellingList(state.products, context),
+                  _topSellingList(state.products, context,user),
                 ],
               );
             }
@@ -63,7 +66,7 @@ class TopSelling extends StatelessWidget {
     );
   }
 
-  Widget _topSellingList(List<ProductEntity> products, BuildContext context) {
+  Widget _topSellingList(List<ProductEntity> products, BuildContext context,UserEntity user) {
     print("products $products");
     return SizedBox(
       height: DSH(210),
@@ -74,7 +77,7 @@ class TopSelling extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ProductCard(productEntity: products[index]),
+              ProductCard(productEntity: products[index],user : user),
               _height(context),
               SizedBox(
                 width: DSW(50),

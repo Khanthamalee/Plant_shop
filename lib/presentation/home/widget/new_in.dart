@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
+import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 import '../bloc/new_in_display_state.dart';
 
 class NewIn extends StatelessWidget {
-  const NewIn({super.key});
+  final UserEntity user;
+  const NewIn({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class NewIn extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ProductCard(productEntity: products[index]),
+              ProductCard(productEntity: products[index], user: user),
               _height(context),
               SizedBox(
                 width: DSW(50),

@@ -1,42 +1,25 @@
 import 'package:firebase_shop/domain/entity/user.dart';
-import 'package:firebase_shop/presentation/home/bloc/user_info_display_cubit.dart';
-import 'package:firebase_shop/presentation/home/bloc/user_info_display_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/configs/assets/app_vector.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final UserEntity user;
+  const Header({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserInfoDisplayCubit()..displayUserInfo(),
-      child: BlocBuilder<UserInfoDisplayCubit, UserInfoDisplayState>(
-        builder: (context, state) {
-          if (state is UserInfoLoading) {
-            print("state : $state");
-            return Center(child: CircularProgressIndicator());
-          }
-          if (state is UserInfoLoaded) {
-            print("state : $state");
-            return Container(
-              padding: EdgeInsets.only(top: DSH(30)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _profileImage(state.user),
-                  _gender(state.user),
-                  _card()
-                ],
-              ),
-            );
-          }
-          return Container();
-        },
+    return Container(
+      padding: EdgeInsets.only(top: DSH(30)),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [_profileImage(user), _gender(user), _card()],
+          ),
+        ],
       ),
     );
   }

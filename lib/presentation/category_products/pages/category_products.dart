@@ -8,13 +8,16 @@ import '../../../common/bloc/product/product_display_cubit.dart';
 import '../../../common/widget/appbar/app_bar.dart';
 import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
+import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 import '../../../domain/product/usecases/get_products_by_categoryId.dart';
 
 class CategoryProducts extends StatelessWidget {
+  final UserEntity user;
   final CategoryEntity categoryEntity;
 
-  const CategoryProducts({super.key, required this.categoryEntity});
+  const CategoryProducts(
+      {super.key, required this.categoryEntity, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class CategoryProducts extends StatelessWidget {
                       children: [
                         _shopByCategoriesText(state.products, context),
                         _height(context),
-                        _shopByCategoriesList(state.products, context)
+                        _shopByCategoriesList(state.products, context,user)
                       ],
                     ),
                   );
@@ -63,7 +66,7 @@ class CategoryProducts extends StatelessWidget {
   }
 
   Widget _shopByCategoriesList(
-      List<ProductEntity> products, BuildContext context) {
+      List<ProductEntity> products, BuildContext context, UserEntity user) {
     print(products);
     return SizedBox(
       height: DSH(740),
@@ -83,7 +86,10 @@ class CategoryProducts extends StatelessWidget {
                 flex: 4,
                 child: Padding(
                   padding: EdgeInsets.all(DSH(8)),
-                  child: ProductCard(productEntity: products[index]),
+                  child: ProductCard(
+                    productEntity: products[index],
+                    user: user,
+                  ),
                 ),
               ),
               Expanded(

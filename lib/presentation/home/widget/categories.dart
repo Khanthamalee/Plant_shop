@@ -6,11 +6,13 @@ import '../../../common/bloc/category/categories_display_cubit.dart';
 import '../../../common/bloc/category/categories_display_state.dart';
 import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../core/configs/theme/app_color.dart';
+import '../../../domain/entity/user.dart';
 import '../../../responsive/dimension.dart';
 import '../../all_categories/pages/all_categories.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
+   final UserEntity user;
+  const Categories({super.key,required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class Categories extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            AppNavigator.push(context, AllCategories());
+            AppNavigator.push(context, AllCategories(user: user,));
           },
           child: Text(
             "See All",

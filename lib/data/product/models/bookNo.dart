@@ -5,13 +5,15 @@ import '../../../domain/product/entities/booNo.dart';
 class BooknoModel {
   final String title;
   final int price;
+  final String image;
 
-  BooknoModel({required this.title, required this.price});
+  BooknoModel({required this.image, required this.title, required this.price});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'title': title,
       'price': price,
+      'image': image,
     };
   }
 
@@ -20,6 +22,7 @@ class BooknoModel {
     return BooknoModel(
       title: map['title'] as String,
       price: map['price'] as int,
+      image: map['image'] as String,
     );
   }
 
@@ -34,6 +37,7 @@ extension BooknoXModel on BooknoModel {
     return BooknoEntity(
       title: title,
       price: price,
+      image: image,
     );
   }
 }
