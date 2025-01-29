@@ -1,3 +1,4 @@
+import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
 import 'package:firebase_shop/common/widget/appbar/app_bar.dart';
 import 'package:firebase_shop/presentation/product_detail/bloc/product_quantity_cubit.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ProductQuantityCubit()),
-        BlocProvider(create: (context) => ProductLanguageSelectedCubit())
+        BlocProvider(create: (context) => ProductLanguageSelectedCubit()),
+        BlocProvider(create: (context) => ButtonStateCubit()),
       ],
       child: Scaffold(
         appBar: BasicAppBar(
@@ -118,7 +120,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             var price = ProductButtonPrice.provideCurrentPrice(
                     widget.productEntity, widget.user, _currPageValue.toInt()) *
                 state;
-            return AddToBag(productEntity: widget.productEntity, price: price);
+            return AddToBag(
+              productEntity: widget.productEntity,
+              price: price,
+              page: _currPageValue.toInt(),
+              user: widget.user,
+            );
           },
         ),
       ),

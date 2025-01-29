@@ -31,7 +31,7 @@ class ProductQuntity extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                print("decrement");
+               // print("decrement");
                 context.read<ProductQuantityCubit>().decrement();
               },
               icon: Container(
@@ -59,7 +59,7 @@ class ProductQuntity extends StatelessWidget {
             //_widtht(context),
             IconButton(
               onPressed: () {
-                print("increment");
+                //print("increment");
                 context.read<ProductQuantityCubit>().increment();
               },
               icon: Container(

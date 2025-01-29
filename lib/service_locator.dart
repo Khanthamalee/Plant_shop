@@ -2,6 +2,8 @@ import 'package:firebase_shop/data/auth/category/repository/category.dart';
 import 'package:firebase_shop/data/auth/category/source/catagory_firebase_service.dart';
 import 'package:firebase_shop/data/auth/repository/auth_repository_impl.dart';
 import 'package:firebase_shop/data/auth/source/auth_firebase_service.dart';
+import 'package:firebase_shop/data/order/repository/order.dart';
+import 'package:firebase_shop/data/order/source/order_firebase_service.dart';
 import 'package:firebase_shop/data/product/repository/product.dart';
 import 'package:firebase_shop/data/product/source/product_firebase_service.dart';
 import 'package:firebase_shop/domain/Auth/repository/auth.dart';
@@ -13,6 +15,8 @@ import 'package:firebase_shop/domain/Auth/usecases/signin.dart';
 import 'package:firebase_shop/domain/Auth/usecases/signup.dart';
 import 'package:firebase_shop/domain/category/repository/category.dart';
 import 'package:firebase_shop/domain/category/usecases/get_categories.dart';
+import 'package:firebase_shop/domain/order/repository/order.dart';
+import 'package:firebase_shop/domain/order/usecase/add_to_cart.dart';
 import 'package:firebase_shop/domain/product/repository/product.dart';
 import 'package:firebase_shop/domain/product/usecases/get_new_in.dart';
 import 'package:firebase_shop/domain/product/usecases/get_products_by_categoryId.dart';
@@ -27,11 +31,13 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthFirebaseService>(AuthFirebaseServiceImpl());
   sl.registerSingleton<CatagoryFirebaseService>(CatagoryFirebaseServiceImpl());
   sl.registerSingleton<ProductFirebaseService>(ProductFirebaseserviceImpl());
+  sl.registerSingleton<OrderFirebaseService>(OrderFirebaseServiceImpl());
 
   //Repositories
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
   sl.registerSingleton<CategoryRepository>(CategoryRepositoryImpl());
   sl.registerSingleton<ProductRepository>(ProductRepositoryImpl());
+  sl.registerSingleton<OrderRepository>(OrderRepositoryImpl());
 
   //Usecases
   sl.registerSingleton<SignupUsecase>(SignupUsecase());
@@ -47,4 +53,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetProductsByCategoryidUseCase>(
       GetProductsByCategoryidUseCase());
   sl.registerSingleton<GetProductsByTitleUseCase>(GetProductsByTitleUseCase());
+  sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
 }

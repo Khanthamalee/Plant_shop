@@ -11,7 +11,7 @@ class ProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(productEntity.booknoModel[page].description);
+   // print(productEntity.booknoModel[page].description);
     return SizedBox(
       height: MediaQuery.of(context).size.height / 2,
       child: Container(

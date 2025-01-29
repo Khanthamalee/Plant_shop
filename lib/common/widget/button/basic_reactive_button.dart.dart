@@ -8,19 +8,27 @@ import '../../../responsive/dimension.dart';
 
 class BasicReactiveButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final Widget? content;
   final String title;
   final double? height;
 
   const BasicReactiveButton(
-      {required this.onPressed, required this.title, this.height, super.key});
+      {required this.onPressed,
+      this.title = '',
+      this.height,
+      this.content,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ButtonStateCubit, ButtonState>(
         builder: (context, state) {
+
       if (state is ButtonLoadingState) {
+
         return _loading();
       }
+
       return _initail();
     });
   }
@@ -43,14 +51,16 @@ class BasicReactiveButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(height ?? DSH(50)),
+        minimumSize: Size.fromHeight(height ?? DSH(60)),
         //backgroundColor: AppColors.secondary
       ),
-      child: Text(title,
-          style: TextStyle(
-              fontSize: DSH(16),
-              color: AppColors.primary,
-              fontWeight: FontWeight.w400)),
+      child: title != ''
+          ? Text(title,
+              style: TextStyle(
+                  fontSize: DSH(16),
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.w400))
+          : content,
     );
   }
 }

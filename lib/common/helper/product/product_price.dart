@@ -9,7 +9,7 @@ class ProductPriceHelper {
     double discountedvip =
         double.parse(product.memberModel.VIP.discountedPrice);
     return user.gender == 1
-        ? "Spacial ${product.memberModel.general.discountedPrice}% discount remaining ${(product.booknoModel[index].price * discountedgen / 100).round()} Baht"
-        : "Spacial ${product.memberModel.VIP.discountedPrice}% discount remaining${(product.booknoModel[index].price * discountedvip / 100).round()} Baht";
+        ? "Spacial ${product.memberModel.general.discountedPrice}% discount remaining ${(product.booknoModel[index].price - (product.booknoModel[index].price * discountedgen / 100)).round()} Baht"
+        : "Spacial ${product.memberModel.VIP.discountedPrice}% discount remaining${(product.booknoModel[index].price - (product.booknoModel[index].price * discountedvip / 100)).round()} Baht";
   }
 }
