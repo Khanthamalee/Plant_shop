@@ -8,12 +8,14 @@ import '../../../common/helper/product/product_price.dart';
 import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 import '../../../responsive/dimension.dart';
+import '../bloc/product_language_selected_cubit.dart';
 import '../widget/add_to_bag.dart';
 import '../widget/product_images.dart';
 import '../widget/product_price.dart';
 import '../widget/product_quntity.dart';
 import '../widget/product_title.dart';
-import '../widget/synopsis_book.dart';
+import '../widget/selected_description.dart';
+import '../widget/selected_language.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final UserEntity user;
@@ -49,61 +51,65 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => ProductQuantityCubit())],
+      providers: [
+        BlocProvider(create: (context) => ProductQuantityCubit()),
+        BlocProvider(create: (context) => ProductLanguageSelectedCubit())
+      ],
       child: Scaffold(
         appBar: BasicAppBar(
           hideBack: false,
         ),
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: DSH(450),
+                height: DSH(400),
                 child: Padding(
-                  padding: EdgeInsets.only(left: DSW(15), right: DSW(15)),
+                  padding: EdgeInsets.only(left: DSW(8), right: DSW(8)),
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     controller: pageController,
                     separatorBuilder: (context, index) => _widtht(context),
                     itemCount: widget.productEntity.booknoModel.length,
                     itemBuilder: (contaxt, index) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProductImages(
-                              image: widget
-                                  .productEntity.booknoModel[index].image),
-                          _height(context),
-                          _height(context),
-                          ProductTitle(
-                              title: widget
-                                  .productEntity.booknoModel[index].title),
-                          _height(context),
-                          BlocBuilder<ProductQuantityCubit, int>(
-                            builder: (context, state) {
-                              var price =
-                                  ProductPriceHelper.provideCurrentPrice(
-                                      widget.productEntity,
-                                      widget.user,
-                                      _currPageValue.toInt());
-                              return ProductPrice(price: price
-                                  //_productprice(_currPageValue.toInt()),
-                                  );
-                            },
-                          ),
-                        ],
-                      );
+                      return ProductImages(
+                          image: widget.productEntity.booknoModel[index].image);
                     },
                   ),
                 ),
               ),
-              SynopsisBook(
+              _height(context),
+              _height(context),
+              _height(context),
+              ProductTitle(
+                  title: widget
+                      .productEntity.booknoModel[_currPageValue.toInt()].title),
+              _height(context),
+              BlocBuilder<ProductQuantityCubit, int>(
+                builder: (context, state) {
+                  var price = ProductPriceHelper.provideCurrentPrice(
+                      widget.productEntity,
+                      widget.user,
+                      _currPageValue.toInt());
+                  return ProductPrice(price: price
+                      //_productprice(_currPageValue.toInt()),
+                      );
+                },
+              ),
+              _height(context),
+              _height(context),
+              Selecteddescription(
+                  productEntity: widget.productEntity,
+                  page: _currPageValue.toInt()),
+              _height(context),
+              SelectedLanguage(
                   productEntity: widget.productEntity,
                   page: _currPageValue.toInt()),
               _height(context),
               ProductQuntity(productEntity: widget.productEntity),
+              _height(context),
             ],
           ),
         ),

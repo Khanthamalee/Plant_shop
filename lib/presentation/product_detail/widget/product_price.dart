@@ -11,18 +11,17 @@ class ProductPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _price(),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(left: DSW(8),right:DSW(8)),
+      child: Column(
+        children: [
+          _price(),
+        ],
+      ),
     );
   }
 
   Widget _price() {
-    // double discountedgen =
-    //     double.parse(productEntity.memberModel.general.discountedPrice);
-    // double discountedvip =
-    //     double.parse(productEntity.memberModel.VIP.discountedPrice);
     return Text(
       price,
       style: TextStyle(

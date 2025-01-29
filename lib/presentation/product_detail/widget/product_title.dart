@@ -9,10 +9,13 @@ class ProductTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _title(),
-      ],
+    return Padding(
+      padding:  EdgeInsets.only(left: DSW(8),right:DSW(8)),
+      child: Column(
+        children: [
+          _title(),
+        ],
+      ),
     );
   }
 

@@ -6,14 +6,16 @@ class BooknoModel {
   final String title;
   final int price;
   final String image;
+  final String description;
 
-  BooknoModel({required this.image, required this.title, required this.price});
+  BooknoModel({required this.image, required this.title, required this.price,required this.description});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'title': title,
       'price': price,
       'image': image,
+      'description': description,
     };
   }
 
@@ -23,6 +25,7 @@ class BooknoModel {
       title: map['title'] as String,
       price: map['price'] as int,
       image: map['image'] as String,
+      description: map['description'] as String,
     );
   }
 
@@ -38,6 +41,7 @@ extension BooknoXModel on BooknoModel {
       title: title,
       price: price,
       image: image,
+      description: description,
     );
   }
 }

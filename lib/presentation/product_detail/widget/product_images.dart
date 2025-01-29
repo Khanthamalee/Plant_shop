@@ -10,7 +10,7 @@ class ProductImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: DSH(360),
+        height: DSH(320),
         width: DSW(190),
         decoration: BoxDecoration(
           image: DecorationImage(fit: BoxFit.fill, image: AssetImage(image)),
