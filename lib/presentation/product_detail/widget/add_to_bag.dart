@@ -1,4 +1,5 @@
 import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/data/order/models/add_to_cart_req.dart';
 import 'package:firebase_shop/domain/order/usecase/add_to_cart.dart';
 import 'package:firebase_shop/presentation/product_detail/bloc/product_language_selected_cubit.dart';
@@ -10,6 +11,7 @@ import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 import '../../../responsive/dimension.dart';
+import '../../cart/pages/cart.dart';
 
 class AddToBag extends StatelessWidget {
   final UserEntity user;
@@ -45,14 +47,7 @@ class AddToBag extends StatelessWidget {
                   totalPrice: price,
                   productImage: productEntity.booknoModel[page].image,
                   createData: DateTime.now().toString()));
-          print(productEntity.productId);
-          print(productEntity.booknoModel[page].title);
-          print(context.read<ProductQuantityCubit>().state);
-          print(_language[
-              context.read<ProductLanguageSelectedCubit>().selectedIndex]);
-          print(productEntity.booknoModel[page].price);
-          print(price);
-          print("Add data success");
+          AppNavigator.push(context, CartPage());
         },
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

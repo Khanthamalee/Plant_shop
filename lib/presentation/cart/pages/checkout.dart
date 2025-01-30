@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/bloc/button/button_state.dart';
+import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../common/helper/cart/cart.dart';
 import '../../../common/widget/appbar/app_bar.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/order/entity/product_ordered.dart';
 import '../../../responsive/dimension.dart';
+import '../../home/pages/home.dart';
+import 'order_placed.dart';
 
 class CheckoutPage extends StatelessWidget {
   final List<ProductOrderedEntity> products;
@@ -62,11 +65,6 @@ class CheckoutPage extends StatelessWidget {
               EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
           child: BasicReactiveButton(
             onPressed: () {
-              print(products);
-              print(DateTime.now().toString());
-              print(products.length);
-              print(total);
-              print(_addressController.text);
               context.read<ButtonStateCubit>().execute(
                   usecase: OrderRegistrationUseCase(),
                   params: OrderRegistrationReq(
@@ -75,12 +73,8 @@ class CheckoutPage extends StatelessWidget {
                       itemCount: products.length,
                       totalPrice: total,
                       shippingadress: _addressController.text));
-
-              // AppNavigator.push(
-              //     context,
-              //     CheckoutPage(
-              //       products: products,
-              //     ));
+              Navigator.pop(context);
+              AppNavigator.push(context, OrderPlacedPage());
             },
             height: DSH(60),
             content: Row(

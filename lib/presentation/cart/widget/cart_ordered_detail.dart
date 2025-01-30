@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_shop/presentation/cart/bloc/cart_product_display_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +59,7 @@ class CartOrderedDetail extends StatelessWidget {
   Widget _textdetail(String text) {
     return Text(
       "$text",
-      style: TextStyle(fontSize: 12),
+      style: TextStyle(fontSize: 11),
     );
   }
 

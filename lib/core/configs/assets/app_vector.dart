@@ -7,4 +7,6 @@ class AppVectors {
   static const woman = 'assets/images/woman.png';
   static const cart = 'assets/images/shopping-cart.png';
   static const search = 'assets/images/search.png';
+  static const emptybox = 'assets/images/empty-box.png';
+  static const orderplaced = 'assets/images/package.png';
 }
