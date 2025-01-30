@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../../common/helper/cart/cart.dart';
 import '../../../common/widget/button/base_app_button.dart';
-import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/order/entity/product_ordered.dart';
 import '../../../responsive/dimension.dart';
 import '../pages/checkout.dart';
@@ -14,30 +13,29 @@ class CartCheckout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _subtotal = CartHelper.calculateCartSubTotal(products);
-    double _shippingCost = CartHelper.calculateCartShippingCost(products);
-    double _tex = CartHelper.calculateCartTex(_subtotal);
-    double _total =
-        CartHelper.calculateCartTotal(_subtotal, _shippingCost, _tex);
+    double subtotal = CartHelper.calculateCartSubTotal(products);
+    double shippingCost = CartHelper.calculateCartShippingCost(products);
+    double tex = CartHelper.calculateCartTex(subtotal);
+    double total =
+        CartHelper.calculateCartTotal(subtotal, shippingCost, tex);
     return Padding(
       padding: EdgeInsets.only(
           top: (10), left: DSW(15), right: DSW(15), bottom: DSH(15)),
-      child: Container(
-          child: Column(
-        children: [
-          _height(context),
-          _subtitle('Subtotal', "$_subtotal B"),
-          _height(context),
-          _subtitle('Shipping Cost', "$_shippingCost B"),
-          _height(context),
-          _subtitle('Tax', "$_tex B"),
-          _height(context),
-          _subtitle('Total', "${_total.round()} B"),
-          _height(context),
-          _height(context),
-          _checkoutButton(context),
-        ],
-      )),
+      child: Column(
+              children: [
+      _height(context),
+      _subtitle('Subtotal', "$subtotal B"),
+      _height(context),
+      _subtitle('Shipping Cost', "$shippingCost B"),
+      _height(context),
+      _subtitle('Tax', "$tex B"),
+      _height(context),
+      _subtitle('Total', "${total.round()} B"),
+      _height(context),
+      _height(context),
+      _checkoutButton(context),
+              ],
+            ),
     );
   }
 

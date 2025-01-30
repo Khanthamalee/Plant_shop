@@ -1,8 +1,13 @@
+import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
+import 'package:firebase_shop/common/widget/button/basic_reactive_button.dart.dart';
+import 'package:firebase_shop/data/order/models/order_registration_req.dart';
+import 'package:firebase_shop/domain/order/usecase/order_registration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../common/bloc/button/button_state.dart';
 import '../../../common/helper/cart/cart.dart';
 import '../../../common/widget/appbar/app_bar.dart';
-import '../../../common/widget/button/base_app_button.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/order/entity/product_ordered.dart';
 import '../../../responsive/dimension.dart';
@@ -14,17 +19,24 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _subtotal = CartHelper.calculateCartSubTotal(products);
-    double _shippingCost = CartHelper.calculateCartShippingCost(products);
-    double _tex = CartHelper.calculateCartTex(_subtotal);
-    double _total =
-        CartHelper.calculateCartTotal(_subtotal, _shippingCost, _tex);
+    double subtotal = CartHelper.calculateCartSubTotal(products);
+    double shippingCost = CartHelper.calculateCartShippingCost(products);
+    double tex = CartHelper.calculateCartTex(subtotal);
+    double total = CartHelper.calculateCartTotal(subtotal, shippingCost, tex);
     return Scaffold(
       appBar: BasicAppBar(
         title: Text("Checkout"),
       ),
-      bottomNavigationBar: _checkoutButton(context, _total),
-      body: _addressField(),
+      body: BlocProvider(
+        create: (context) => ButtonStateCubit(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _addressField(),
+            _checkoutButton(context, total),
+          ],
+        ),
+      ),
     );
   }
 
@@ -44,32 +56,49 @@ class CheckoutPage extends StatelessWidget {
   }
 
   Widget _checkoutButton(BuildContext context, double total) {
-    return Padding(
-        padding: EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
-        child: BaseAppButton(
-          onPressed: () {
-            // AppNavigator.push(
-            //     context,
-            //     CheckoutPage(
-            //       products: products,
-            //     ));
-          },
-          height: DSH(60),
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("${total.round()}  B",
-                  style: TextStyle(
-                      fontSize: DSH(16),
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w400)),
-              Text("Place Order",
-                  style: TextStyle(
-                      fontSize: DSH(16),
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w400)),
-            ],
-          ),
-        ));
+    return BlocBuilder<ButtonStateCubit, ButtonState>(
+      builder: (context, state) => Padding(
+          padding:
+              EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
+          child: BasicReactiveButton(
+            onPressed: () {
+              print(products);
+              print(DateTime.now().toString());
+              print(products.length);
+              print(total);
+              print(_addressController.text);
+              context.read<ButtonStateCubit>().execute(
+                  usecase: OrderRegistrationUseCase(),
+                  params: OrderRegistrationReq(
+                      products: products,
+                      createData: DateTime.now().toString(),
+                      itemCount: products.length,
+                      totalPrice: total,
+                      shippingadress: _addressController.text));
+
+              // AppNavigator.push(
+              //     context,
+              //     CheckoutPage(
+              //       products: products,
+              //     ));
+            },
+            height: DSH(60),
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("${total.round()}  B",
+                    style: TextStyle(
+                        fontSize: DSH(16),
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w400)),
+                Text("Place Order",
+                    style: TextStyle(
+                        fontSize: DSH(16),
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w400)),
+              ],
+            ),
+          )),
+    );
   }
 }

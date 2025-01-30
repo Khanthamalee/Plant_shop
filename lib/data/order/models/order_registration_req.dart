@@ -6,12 +6,14 @@ class OrderRegistrationReq {
   final String createData;
   final int itemCount;
   final double totalPrice;
+  final String shippingadress;
 
   OrderRegistrationReq(
       {required this.products,
       required this.createData,
       required this.itemCount,
-      required this.totalPrice});
+      required this.totalPrice,
+      required this.shippingadress});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -19,6 +21,7 @@ class OrderRegistrationReq {
       'createData': createData,
       'itemCount': itemCount,
       'totalPrice': totalPrice,
+      'shippingadress': shippingadress,
     };
   }
 }
