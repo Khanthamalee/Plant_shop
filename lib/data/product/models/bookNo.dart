@@ -3,15 +3,22 @@ import 'dart:convert';
 import '../../../domain/product/entities/booNo.dart';
 
 class BooknoModel {
+  final String Id;
   final String title;
   final int price;
   final String image;
   final String description;
 
-  BooknoModel({required this.image, required this.title, required this.price,required this.description});
+  BooknoModel(
+      {required this.Id,
+      required this.image,
+      required this.title,
+      required this.price,
+      required this.description});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'Id': Id,
       'title': title,
       'price': price,
       'image': image,
@@ -22,6 +29,7 @@ class BooknoModel {
   factory BooknoModel.fromMap(Map<String, dynamic> map) {
     print("map in BooknoModel :$map");
     return BooknoModel(
+      Id: map['Id'] as String,
       title: map['title'] as String,
       price: map['price'] as int,
       image: map['image'] as String,
@@ -38,6 +46,7 @@ class BooknoModel {
 extension BooknoXModel on BooknoModel {
   BooknoEntity toEntity() {
     return BooknoEntity(
+      Id: Id,
       title: title,
       price: price,
       image: image,

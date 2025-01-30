@@ -17,6 +17,7 @@ import 'package:firebase_shop/domain/category/repository/category.dart';
 import 'package:firebase_shop/domain/category/usecases/get_categories.dart';
 import 'package:firebase_shop/domain/order/repository/order.dart';
 import 'package:firebase_shop/domain/order/usecase/add_to_cart.dart';
+import 'package:firebase_shop/domain/order/usecase/get_cart_products.dart';
 import 'package:firebase_shop/domain/product/repository/product.dart';
 import 'package:firebase_shop/domain/product/usecases/get_new_in.dart';
 import 'package:firebase_shop/domain/product/usecases/get_products_by_categoryId.dart';
@@ -54,4 +55,5 @@ Future<void> initializeDependencies() async {
       GetProductsByCategoryidUseCase());
   sl.registerSingleton<GetProductsByTitleUseCase>(GetProductsByTitleUseCase());
   sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
+  sl.registerSingleton<GetCartProductsUsecase>(GetCartProductsUsecase());
 }

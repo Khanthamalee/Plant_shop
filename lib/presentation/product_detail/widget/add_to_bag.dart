@@ -36,7 +36,7 @@ class AddToBag extends StatelessWidget {
           context.read<ButtonStateCubit>().execute(
               usecase: AddToCartUseCase(),
               params: AddToCartReq(
-                  productId: productEntity.productId,
+                  productId: productEntity.booknoModel[page].Id,
                   productTitle: productEntity.booknoModel[page].title,
                   productQauntity: context.read<ProductQuantityCubit>().state,
                   productlanguage: _language[context

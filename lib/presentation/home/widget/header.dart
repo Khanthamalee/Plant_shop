@@ -1,9 +1,11 @@
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/domain/entity/user.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configs/assets/app_vector.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
+import '../../cart/pages/cart.dart';
 
 class Header extends StatelessWidget {
   final UserEntity user;
@@ -17,7 +19,7 @@ class Header extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [_profileImage(user), _gender(user), _card()],
+            children: [_profileImage(user), _gender(user), _card(context)],
           ),
         ],
       ),
@@ -60,14 +62,19 @@ class Header extends StatelessWidget {
     );
   }
 
-  Widget _card() {
-    return Container(
-      height: DSH(50),
-      width: DSW(50),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-          image: DecorationImage(image: AssetImage(AppVectors.cart))),
+  Widget _card(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.push(context, CartPage());
+      },
+      child: Container(
+        height: DSH(50),
+        width: DSW(50),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            image: DecorationImage(image: AssetImage(AppVectors.cart))),
+      ),
     );
   }
 }
