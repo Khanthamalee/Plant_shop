@@ -16,26 +16,25 @@ class CartCheckout extends StatelessWidget {
     double subtotal = CartHelper.calculateCartSubTotal(products);
     double shippingCost = CartHelper.calculateCartShippingCost(products);
     double tex = CartHelper.calculateCartTex(subtotal);
-    double total =
-        CartHelper.calculateCartTotal(subtotal, shippingCost, tex);
+    double total = CartHelper.calculateCartTotal(subtotal, shippingCost, tex);
     return Padding(
       padding: EdgeInsets.only(
           top: (10), left: DSW(15), right: DSW(15), bottom: DSH(15)),
       child: Column(
-              children: [
-      _height(context),
-      _subtitle('Subtotal', "$subtotal B"),
-      _height(context),
-      _subtitle('Shipping Cost', "$shippingCost B"),
-      _height(context),
-      _subtitle('Tax', "$tex B"),
-      _height(context),
-      _subtitle('Total', "${total.round()} B"),
-      _height(context),
-      _height(context),
-      _checkoutButton(context),
-              ],
-            ),
+        children: [
+          _height(context),
+          _subtitle('Subtotal', "$subtotal B"),
+          _height(context),
+          _subtitle('Shipping Cost', "$shippingCost B"),
+          _height(context),
+          _subtitle('Tax', "$tex B"),
+          _height(context),
+          _subtitle('Total', "${total.round()} B"),
+          _height(context),
+          _height(context),
+          _checkoutButton(context),
+        ],
+      ),
     );
   }
 

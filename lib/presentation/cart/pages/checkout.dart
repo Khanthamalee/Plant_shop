@@ -60,39 +60,58 @@ class CheckoutPage extends StatelessWidget {
 
   Widget _checkoutButton(BuildContext context, double total) {
     return BlocBuilder<ButtonStateCubit, ButtonState>(
-      builder: (context, state) => Padding(
-          padding:
-              EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
-          child: BasicReactiveButton(
-            onPressed: () {
-              context.read<ButtonStateCubit>().execute(
-                  usecase: OrderRegistrationUseCase(),
-                  params: OrderRegistrationReq(
-                      products: products,
-                      createData: DateTime.now().toString(),
-                      itemCount: products.length,
-                      totalPrice: total,
-                      shippingadress: _addressController.text));
-              Navigator.pop(context);
-              AppNavigator.push(context, OrderPlacedPage());
-            },
-            height: DSH(60),
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("${total.round()}  B",
-                    style: TextStyle(
-                        fontSize: DSH(16),
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w400)),
-                Text("Place Order",
-                    style: TextStyle(
-                        fontSize: DSH(16),
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w400)),
-              ],
-            ),
-          )),
+      builder: (context, state) => BlocListener<ButtonStateCubit, ButtonState>(
+        listener: (context, state) {
+          if (state is ButtonSuccessState) {
+            var snackbar = SnackBar(
+              content: Center(child: Text("Order Placed successfully.")),
+              behavior: SnackBarBehavior.floating,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            AppNavigator.push(context, OrderPlacedPage());
+          }
+          if (state is ButtonFailureState) {
+            var snackbar = SnackBar(
+              content: Text(state.errorMessage),
+              behavior: SnackBarBehavior.floating,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackbar);
+          }
+        },
+        child: Padding(
+            padding:
+                EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
+            child: BasicReactiveButton(
+              onPressed: () {
+                context.read<ButtonStateCubit>().execute(
+                    usecase: OrderRegistrationUseCase(),
+                    params: OrderRegistrationReq(
+                        products: products,
+                        createData: DateTime.now().toString(),
+                        itemCount: products.length,
+                        totalPrice: total,
+                        shippingadress: _addressController.text));
+                //Navigator.pop(context);
+                //AppNavigator.push(context, OrderPlacedPage());
+              },
+              height: DSH(60),
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${total.round()}  B",
+                      style: TextStyle(
+                          fontSize: DSH(16),
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w400)),
+                  Text("Place Order",
+                      style: TextStyle(
+                          fontSize: DSH(16),
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w400)),
+                ],
+              ),
+            )),
+      ),
     );
   }
 }

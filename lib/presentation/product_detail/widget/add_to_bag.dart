@@ -1,3 +1,4 @@
+import 'package:firebase_shop/common/bloc/button/button_state.dart';
 import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
 import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/data/order/models/add_to_cart_req.dart';
@@ -29,40 +30,59 @@ class AddToBag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
-      child: BasicReactiveButton(
-        onPressed: () {
-          context.read<ButtonStateCubit>().execute(
-              usecase: AddToCartUseCase(),
-              params: AddToCartReq(
-                  productId: productEntity.booknoModel[page].Id,
-                  productTitle: productEntity.booknoModel[page].title,
-                  productQauntity: context.read<ProductQuantityCubit>().state,
-                  productlanguage: _language[context
-                      .read<ProductLanguageSelectedCubit>()
-                      .selectedIndex],
-                  productPrice:
-                      price / context.read<ProductQuantityCubit>().state,
-                  totalPrice: price,
-                  productImage: productEntity.booknoModel[page].image,
-                  createData: DateTime.now().toString()));
+    return BlocListener<ButtonStateCubit, ButtonState>(
+      listener: (context, state) {
+        if (state is ButtonSuccessState) {
+          var snackbar = SnackBar(
+            content: Center(child: Text("Add to cart successfully.")),
+            behavior: SnackBarBehavior.floating,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
           AppNavigator.push(context, CartPage());
-        },
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("${price}  Baht",
-                style: TextStyle(
-                    fontSize: DSH(18),
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w400)),
-            Text("Add to bag",
-                style: TextStyle(
-                    fontSize: DSH(18),
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w400)),
-          ],
+        }
+        if (state is ButtonFailureState) {
+          var snackbar = SnackBar(
+            content: Text(state.errorMessage),
+            behavior: SnackBarBehavior.floating,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.only(left: DSW(8), right: DSW(8), bottom: DSH(15)),
+        child: BasicReactiveButton(
+          onPressed: () {
+            context.read<ButtonStateCubit>().execute(
+                usecase: AddToCartUseCase(),
+                params: AddToCartReq(
+                    productId: productEntity.booknoModel[page].Id,
+                    productTitle: productEntity.booknoModel[page].title,
+                    productQauntity: context.read<ProductQuantityCubit>().state,
+                    productlanguage: _language[context
+                        .read<ProductLanguageSelectedCubit>()
+                        .selectedIndex],
+                    productPrice:
+                        price / context.read<ProductQuantityCubit>().state,
+                    totalPrice: price,
+                    productImage: productEntity.booknoModel[page].image,
+                    createData: DateTime.now().toString()));
+            // AppNavigator.push(context, CartPage());
+          },
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("${price}  Baht",
+                  style: TextStyle(
+                      fontSize: DSH(18),
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w400)),
+              Text("Add to bag",
+                  style: TextStyle(
+                      fontSize: DSH(18),
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
         ),
       ),
     );
