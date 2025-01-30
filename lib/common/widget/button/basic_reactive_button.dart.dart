@@ -10,6 +10,7 @@ class BasicReactiveButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget? content;
   final String title;
+  
   final double? height;
 
   const BasicReactiveButton(

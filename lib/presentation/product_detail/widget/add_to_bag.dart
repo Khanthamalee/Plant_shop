@@ -5,8 +5,6 @@ import 'package:firebase_shop/presentation/product_detail/bloc/product_language_
 import 'package:firebase_shop/presentation/product_detail/bloc/product_quantity_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../common/helper/product/product_button_price.dart';
 import '../../../common/widget/button/basic_reactive_button.dart.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/entity/user.dart';

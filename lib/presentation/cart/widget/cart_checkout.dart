@@ -1,9 +1,12 @@
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/helper/cart/cart.dart';
+import '../../../common/widget/button/base_app_button.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/order/entity/product_ordered.dart';
 import '../../../responsive/dimension.dart';
+import '../pages/checkout.dart';
 
 class CartCheckout extends StatelessWidget {
   final List<ProductOrderedEntity> products;
@@ -32,7 +35,7 @@ class CartCheckout extends StatelessWidget {
           _subtitle('Total', "${_total.round()} B"),
           _height(context),
           _height(context),
-          _checkoutButton(),
+          _checkoutButton(context),
         ],
       )),
     );
@@ -55,17 +58,17 @@ class CartCheckout extends StatelessWidget {
     return WH(context, 10);
   }
 
-  Widget _checkoutButton() {
-    return ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size.fromHeight(DSH(60)),
-          //backgroundColor: AppColors.secondary
-        ),
-        child: Text("Checkout",
-            style: TextStyle(
-                fontSize: DSH(16),
-                color: AppColors.primary,
-                fontWeight: FontWeight.w400)));
+  Widget _checkoutButton(BuildContext context) {
+    return BaseAppButton(
+      onPressed: () {
+        AppNavigator.push(
+            context,
+            CheckoutPage(
+              products: products,
+            ));
+      },
+      title: "Checkout",
+      height: DSH(60),
+    );
   }
 }

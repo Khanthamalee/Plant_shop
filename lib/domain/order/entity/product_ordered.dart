@@ -7,6 +7,7 @@ class ProductOrderedEntity {
   final double totalPrice;
   final String productImage;
   final String createData;
+  final String id;
 
   ProductOrderedEntity(
       {required this.productId,
@@ -16,5 +17,6 @@ class ProductOrderedEntity {
       required this.productPrice,
       required this.totalPrice,
       required this.productImage,
-      required this.createData});
+      required this.createData,
+      required this.id});
 }

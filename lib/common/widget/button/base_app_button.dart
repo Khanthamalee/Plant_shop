@@ -5,11 +5,16 @@ import '../../../responsive/dimension.dart';
 
 class BaseAppButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final String title;
+  final String? title;
   final double? height;
+  final Widget? content;
 
   const BaseAppButton(
-      {required this.onPressed, required this.title, this.height, super.key});
+      {required this.onPressed,
+      this.title = '',
+      this.height,
+      this.content,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +25,13 @@ class BaseAppButton extends StatelessWidget {
           minimumSize: Size.fromHeight(height ?? DSH(50)),
           //backgroundColor: AppColors.secondary
         ),
-        child: Text(title,
-            style: TextStyle(
-                fontSize: DSH(16),
-                color: AppColors.primary,
-                fontWeight: FontWeight.w400)),
+        child: title != ''
+            ? Text(title.toString(),
+                style: TextStyle(
+                    fontSize: DSH(16),
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w400))
+            : content,
       ),
     );
   }

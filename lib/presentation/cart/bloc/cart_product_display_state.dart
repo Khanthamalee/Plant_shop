@@ -10,4 +10,8 @@ class CartProductLoaded extends CartProductDisplayState {
   CartProductLoaded({required this.products});
 }
 
-class LoadCartProductsFailure extends CartProductDisplayState {}
+class LoadCartProductsFailure extends CartProductDisplayState {
+  final String errorMessage;
+
+  LoadCartProductsFailure({required this.errorMessage});
+}

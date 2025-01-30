@@ -6,6 +6,7 @@ import 'package:firebase_shop/data/order/models/add_to_cart_req.dart';
 abstract class OrderFirebaseService {
   Future<Either> addToCart(AddToCartReq addToCartReq);
   Future<Either> getcartProduct();
+  Future<Either> removeCartProduct(String id);
 }
 
 class OrderFirebaseServiceImpl extends OrderFirebaseService {
@@ -35,10 +36,32 @@ class OrderFirebaseServiceImpl extends OrderFirebaseService {
           .doc(user?.uid)
           .collection('Cart')
           .get();
-      print(
-          "returnedData.docs.map((e) => e.data()) :${returnedData.docs.map((e) => e.data())}");
-      print(returnedData.docs.map((e) => e.data()).runtimeType);
-      return Right(returnedData.docs.map((e) => e.data()));
+
+      List<Map> products = [];
+      for (var item in returnedData.docs) {
+        var data = item.data();
+        data.addAll({'id': item.id});
+        products.add(data);
+      }
+
+      return Right(products);
+    } catch (e) {
+      return Left("Please try again later");
+    }
+  }
+
+  @override
+  Future<Either> removeCartProduct(String id) async {
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(user?.uid)
+          .collection('Cart')
+          .doc(id)
+          .delete();
+
+      return Right('Product removed successfully');
     } catch (e) {
       return Left("Please try again later");
     }

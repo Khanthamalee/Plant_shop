@@ -56,6 +56,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         BlocProvider(create: (context) => ProductQuantityCubit()),
         BlocProvider(create: (context) => ProductLanguageSelectedCubit()),
         BlocProvider(create: (context) => ButtonStateCubit()),
+        
       ],
       child: Scaffold(
         appBar: BasicAppBar(

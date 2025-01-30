@@ -24,4 +24,15 @@ class OrderRepositoryImpl extends OrderRepository {
           .toList());
     });
   }
+
+  @override
+  Future<Either> removeCartProduct(String id) async {
+    var returnedDate = await sl<OrderFirebaseService>().removeCartProduct(id);
+
+    return returnedDate.fold((error) {
+      return Left(error);
+    }, (message) {
+      return Right(message);
+    });
+  }
 }
