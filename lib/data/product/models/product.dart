@@ -79,3 +79,17 @@ extension ProductXModel on ProductModel {
         booknoModel: booknoModel.map((e) => e.toEntity()).toList());
   }
 }
+
+extension ProductXEntity on ProductEntity {
+  ProductModel fromEntity() {
+    return ProductModel(
+        categoryId: categoryId,
+        title: title,
+        sellno: sellno,
+        createDate: createDate,
+        image: image,
+        productId: productId,
+        memberModel: memberModel.fromEntity(),
+        booknoModel: booknoModel.map((e) => e.fromEntity()).toList());
+  }
+}

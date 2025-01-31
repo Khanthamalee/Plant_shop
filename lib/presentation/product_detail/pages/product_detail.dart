@@ -9,8 +9,10 @@ import '../../../common/helper/product/product_price.dart';
 import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
 import '../../../responsive/dimension.dart';
+import '../bloc/favorite_icon_cubit.dart';
 import '../bloc/product_language_selected_cubit.dart';
 import '../widget/add_to_bag.dart';
+import '../widget/favorite_button.dart';
 import '../widget/product_images.dart';
 import '../widget/product_price.dart';
 import '../widget/product_quntity.dart';
@@ -56,11 +58,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         BlocProvider(create: (context) => ProductQuantityCubit()),
         BlocProvider(create: (context) => ProductLanguageSelectedCubit()),
         BlocProvider(create: (context) => ButtonStateCubit()),
-        
+        BlocProvider(
+            create: (context) => FavoriteIconCubit()
+              ..isFavorite(
+                  widget.productEntity.booknoModel[_currPageValue.toInt()].Id)),
       ],
       child: Scaffold(
         appBar: BasicAppBar(
           hideBack: false,
+          action: FavoriteButton(
+            productEntity: widget.productEntity,
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(

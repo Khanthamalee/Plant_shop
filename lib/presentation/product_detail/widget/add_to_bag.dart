@@ -34,8 +34,25 @@ class AddToBag extends StatelessWidget {
       listener: (context, state) {
         if (state is ButtonSuccessState) {
           var snackbar = SnackBar(
-            content: Center(child: Text("Add to cart successfully.")),
+            content: Center(
+                child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(DSW(20)),
+                  bottomRight: Radius.circular(DSW(20)),
+                ),
+              ),
+              child: Text(
+                "Add to cart successfully.",
+                textAlign: TextAlign.center,
+              ),
+            )),
+            shape: StadiumBorder(),
             behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height - DSH(100),
+                left: DSW(10),
+                right: DSW(10)),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackbar);
           AppNavigator.push(context, CartPage());

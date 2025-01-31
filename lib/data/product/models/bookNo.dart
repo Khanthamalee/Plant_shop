@@ -54,3 +54,15 @@ extension BooknoXModel on BooknoModel {
     );
   }
 }
+
+extension BooknoXEntity on BooknoEntity {
+  BooknoModel fromEntity() {
+    return BooknoModel(
+      Id: Id,
+      title: title,
+      price: price,
+      image: image,
+      description: description,
+    );
+  }
+}

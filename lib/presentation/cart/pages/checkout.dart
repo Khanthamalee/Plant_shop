@@ -63,12 +63,12 @@ class CheckoutPage extends StatelessWidget {
       builder: (context, state) => BlocListener<ButtonStateCubit, ButtonState>(
         listener: (context, state) {
           if (state is ButtonSuccessState) {
-            var snackbar = SnackBar(
-              content: Center(child: Text("Order Placed successfully.")),
-              behavior: SnackBarBehavior.floating,
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackbar);
-            AppNavigator.push(context, OrderPlacedPage());
+            // var snackbar = SnackBar(
+            //   content: Center(child: Text("Order Placed successfully.")),
+            //   behavior: SnackBarBehavior.floating,
+            // );
+            // ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            AppNavigator.pushAndRemove(context, OrderPlacedPage());
           }
           if (state is ButtonFailureState) {
             var snackbar = SnackBar(

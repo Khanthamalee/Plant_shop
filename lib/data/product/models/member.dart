@@ -38,6 +38,15 @@ extension MemberXModel on MemberModel {
   }
 }
 
+extension MemberXEntity on MemberEntity {
+  MemberModel fromEntity() {
+    return MemberModel(
+      general: general.fromEntity(),
+      VIP: VIP.fromEntity(),
+    );
+  }
+}
+
 class DiscountedPriceModel {
   final String discountedPrice;
 
@@ -51,8 +60,7 @@ class DiscountedPriceModel {
 
   factory DiscountedPriceModel.fromMap(Map<String, dynamic> map) {
     print(" map in DiscountedPriceModel :$map");
-    return DiscountedPriceModel(
-        discountedPrice: map['discountedPrice']);
+    return DiscountedPriceModel(discountedPrice: map['discountedPrice']);
   }
 
   String toJson() => json.encode(toMap());
@@ -64,6 +72,14 @@ class DiscountedPriceModel {
 extension DiscountedPriceXModel on DiscountedPriceModel {
   DiscountedPriceEntity toEntity() {
     return DiscountedPriceEntity(
+      discountedPrice: discountedPrice,
+    );
+  }
+}
+
+extension DiscountedPriceXEntity on DiscountedPriceEntity {
+  DiscountedPriceModel fromEntity() {
+    return DiscountedPriceModel(
       discountedPrice: discountedPrice,
     );
   }
