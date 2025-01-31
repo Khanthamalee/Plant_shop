@@ -34,8 +34,8 @@ class ProductModel {
       'sellno': sellno,
       'createDate': createDate,
       'productId': productId,
-      'memberModel': memberModel.toMap(),
-      'booknoModel': booknoModel.map((e) => e.toMap()).toList(),
+      'member': memberModel.toMap(),
+      'Bookno': booknoModel.map((e) => e.toMap()).toList(),
     };
   }
 

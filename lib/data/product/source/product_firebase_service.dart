@@ -111,7 +111,7 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
           .collection('user')
           .doc(user!.uid)
           .collection('Favorites')
-          .where('productId', isEqualTo: product.productId)
+          .where('productId', isEqualTo: product.productId.padLeft(19))
           .get();
 
       print(
@@ -129,7 +129,6 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
             .doc(user.uid)
             .collection('Favorites')
             .add(product.fromEntity().toMap());
-
         return Right(true);
       }
     } catch (e) {

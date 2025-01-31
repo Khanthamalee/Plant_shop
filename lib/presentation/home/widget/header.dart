@@ -6,6 +6,7 @@ import '../../../core/configs/assets/app_vector.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../responsive/dimension.dart';
 import '../../cart/pages/cart.dart';
+import '../../settings/pages/settings.dart';
 
 class Header extends StatelessWidget {
   final UserEntity user;
@@ -19,27 +20,36 @@ class Header extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [_profileImage(user), _gender(user), _card(context)],
+            children: [
+              _profileImage(user, context),
+              _gender(user),
+              _card(context)
+            ],
           ),
         ],
       ),
     );
   }
 
-  Widget _profileImage(UserEntity user) {
+  Widget _profileImage(UserEntity user, BuildContext context) {
     print("user.image : ${user.image}");
-    return Container(
-      height: DSH(50),
-      width: DSW(50),
-      decoration: BoxDecoration(
-          color: Colors.redAccent,
-          shape: BoxShape.circle,
-          //image: DecorationImage(image: AssetImage(AppVectors.send_email))
-          image: user.image != ""
-              ? DecorationImage(image: NetworkImage(user.image), scale: 1.0)
-              : DecorationImage(
-                  image: AssetImage(
-                      user.gender == 1 ? AppVectors.men : AppVectors.woman))),
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.push(context, SettingsPage(userEntity: user));
+      },
+      child: Container(
+        height: DSH(50),
+        width: DSW(50),
+        decoration: BoxDecoration(
+            color: Colors.redAccent,
+            shape: BoxShape.circle,
+            //image: DecorationImage(image: AssetImage(AppVectors.send_email))
+            image: user.image != ""
+                ? DecorationImage(image: NetworkImage(user.image), scale: 1.0)
+                : DecorationImage(
+                    image: AssetImage(
+                        user.gender == 1 ? AppVectors.men : AppVectors.woman))),
+      ),
     );
   }
 

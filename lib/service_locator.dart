@@ -18,6 +18,7 @@ import 'package:firebase_shop/domain/category/usecases/get_categories.dart';
 import 'package:firebase_shop/domain/order/repository/order.dart';
 import 'package:firebase_shop/domain/order/usecase/add_to_cart.dart';
 import 'package:firebase_shop/domain/order/usecase/get_cart_products.dart';
+import 'package:firebase_shop/domain/order/usecase/get_order.dart';
 import 'package:firebase_shop/domain/order/usecase/order_registration.dart';
 import 'package:firebase_shop/domain/order/usecase/remove_cart_product.dart';
 import 'package:firebase_shop/domain/product/repository/product.dart';
@@ -67,4 +68,5 @@ Future<void> initializeDependencies() async {
       AddOrRemoveFavoriteProductUseCase());
   sl.registerSingleton<IsFavoriteUseCase>(IsFavoriteUseCase());
   sl.registerSingleton<GetFavoriteUseCase>(GetFavoriteUseCase());
+  sl.registerSingleton<GetOrderUseCase>(GetOrderUseCase());
 }

@@ -67,11 +67,12 @@ class ProductRepositoryImpl extends ProductRepository {
         await sl<ProductFirebaseService>().addOrRemoveFavoriteProduct(product);
     // print("addOrRemoveFavoriteProduct $returnedDate");
     return returnedDate.fold((error) {
-      print("error : $error");
+      //print("error : $error");
       return Left(error);
     }, (data) {
-      print(" data in addOrRemoveFavoriteProduct  : $data");
-
+      //print(" data in addOrRemoveFavoriteProduct  : $data");
+      //print(
+      //" return in addOrRemoveFavoriteProduct  : ${List.from(data).map((e) => ProductModel.fromMap(e).toEntity()).toList()}");
       return Right(data);
     });
   }
@@ -86,8 +87,17 @@ class ProductRepositoryImpl extends ProductRepository {
     var returnedDate = await sl<ProductFirebaseService>().getFavoriteProducts();
 
     return returnedDate.fold((error) {
+      print(error);
       return Left(error);
     }, (data) {
+      print(data);
+      print(data.runtimeType);
+
+      for (var item in data) {
+        var product = ProductModel.fromMap(item).toEntity();
+        print(product);
+      }
+
       return Right(List.from(data)
           .map((e) => ProductModel.fromMap(e).toEntity())
           .toList());
