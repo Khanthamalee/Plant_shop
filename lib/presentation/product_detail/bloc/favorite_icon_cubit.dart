@@ -14,11 +14,15 @@ class FavoriteIconCubit extends Cubit<bool> {
   }
 
   void onTap(ProductEntity product) async {
+    print("onTap : $product");
     var result =
         await sl<AddOrRemoveFavoriteProductUseCase>().call(params: product);
+    print("result : $result");
     result.fold((error) {
+      //print(error.toString());
       emit(error);
     }, (data) {
+      print(data.toString());
       emit(data);
     });
   }

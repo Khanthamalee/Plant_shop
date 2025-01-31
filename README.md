@@ -5,5 +5,4 @@
 - GET IT
 - DARTZ
 
-#### add detail page
-#### edit UI
+#### continue Add Favorite

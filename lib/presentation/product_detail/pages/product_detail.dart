@@ -60,8 +60,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         BlocProvider(create: (context) => ButtonStateCubit()),
         BlocProvider(
             create: (context) => FavoriteIconCubit()
-              ..isFavorite(
-                  widget.productEntity.booknoModel[_currPageValue.toInt()].Id)),
+              ..isFavorite(widget.productEntity.productId
+                  //booknoModel[_currPageValue.toInt()].Id
+                  )),
       ],
       child: Scaffold(
         appBar: BasicAppBar(

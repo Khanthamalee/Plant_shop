@@ -105,6 +105,7 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
   @override
   Future<Either> addOrRemoveFavoriteProduct(ProductEntity product) async {
     try {
+      print(product.title);
       var user = FirebaseAuth.instance.currentUser;
       var products = await FirebaseFirestore.instance
           .collection('user')
@@ -113,19 +114,27 @@ class ProductFirebaseserviceImpl extends ProductFirebaseService {
           .where('productId', isEqualTo: product.productId)
           .get();
 
-      if (products.docs.isEmpty) {
+      print(
+          "product.productId addOrRemoveFavoriteProduct : ${product.productId}");
+      print("products.docs ${products.docs}");
+
+      if (products.docs.isNotEmpty) {
         products.docs.first.reference.delete();
         return Right(false);
       } else {
+        print(products.docs.isEmpty);
+        print(product.fromEntity().toMap()["memberModel"]);
         await FirebaseFirestore.instance
             .collection('user')
             .doc(user.uid)
             .collection('Favorites')
             .add(product.fromEntity().toMap());
+        print(true);
         return Right(true);
       }
     } catch (e) {
-      return Left("Please try again");
+      print("e.toString() :${e.toString()}");
+      return Left("addOrRemoveFavoriteProduct Please try again");
     }
   }
 
