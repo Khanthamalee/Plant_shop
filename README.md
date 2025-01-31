@@ -5,4 +5,4 @@
 - GET IT
 - DARTZ
 
-#### continue Add Favorite
+#### continue Edit add data default of order to cart

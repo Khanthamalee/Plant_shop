@@ -1,3 +1,4 @@
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/common/widget/appbar/app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -5,6 +6,7 @@ import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/entity/user.dart';
 import '../../../domain/order/entity/order.dart';
 import '../../../responsive/dimension.dart';
+import 'order_item.dart';
 
 class OrderDetailPage extends StatelessWidget {
   final UserEntity userEntity;
@@ -119,9 +121,17 @@ class OrderDetailPage extends StatelessWidget {
                             fontSize: DSH(16), color: AppColors.primary)),
                   ],
                 ),
-                Text(' View All',
-                    style: TextStyle(
-                        fontSize: DSH(16), color: AppColors.textsecondary))
+                GestureDetector(
+                  onTap: () {
+                    AppNavigator.push(
+                        context,
+                        OrderItemsPage(
+                            productOrderedEntity: orderEntity.products));
+                  },
+                  child: Text(' View All',
+                      style: TextStyle(
+                          fontSize: DSH(16), color: AppColors.textsecondary)),
+                )
               ],
             ),
           ),

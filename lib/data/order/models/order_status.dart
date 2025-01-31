@@ -10,6 +10,7 @@ class OrderStatusModel {
       {required this.title, required this.done, required this.createDate});
 
   factory OrderStatusModel.fromMap(Map<String, dynamic> map) {
+    print(map.toString());
     return OrderStatusModel(
         title: map['title'] as String,
         done: map['done'] as bool,
