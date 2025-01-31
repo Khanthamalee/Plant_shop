@@ -34,8 +34,8 @@ class ProductModel {
       'sellno': sellno,
       'createDate': createDate,
       'productId': productId,
-      'memberModel': memberModel,
-      'booknoModel': booknoModel,
+      'memberModel': memberModel.toMap(),
+      'booknoModel': booknoModel.map((e) => e.toMap()).toList(),
     };
   }
 
@@ -50,9 +50,13 @@ class ProductModel {
       memberModel: MemberModel.fromMap({
         "member": {
           "general": {
-            "discountedPrice": map["member"]["general"]["discountedPrice"].toString(),
+            "discountedPrice":
+                map["member"]["general"]["discountedPrice"].toString(),
           },
-          "VIP": {"discountedPrice": map["member"]["VIP"]["discountedPrice"].toString()}
+          "VIP": {
+            "discountedPrice":
+                map["member"]["VIP"]["discountedPrice"].toString()
+          }
         }
       }),
       booknoModel: List<BooknoModel>.from(

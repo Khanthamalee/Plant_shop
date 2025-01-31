@@ -65,13 +65,14 @@ class ProductRepositoryImpl extends ProductRepository {
   Future<Either> addOrRemoveFavoriteProduct(ProductEntity product) async {
     var returnedDate =
         await sl<ProductFirebaseService>().addOrRemoveFavoriteProduct(product);
-    print("addOrRemoveFavoriteProduct $returnedDate");
+    // print("addOrRemoveFavoriteProduct $returnedDate");
     return returnedDate.fold((error) {
+      print("error : $error");
       return Left(error);
     }, (data) {
-      return Right(List.from(data)
-          .map((e) => ProductModel.fromMap(e).toEntity())
-          .toList());
+      print(" data in addOrRemoveFavoriteProduct  : $data");
+
+      return Right(data);
     });
   }
 

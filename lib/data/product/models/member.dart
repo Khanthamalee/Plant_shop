@@ -10,13 +10,13 @@ class MemberModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'member': general,
-      'VIP': VIP,
+      'member': general.toMap(),
+      'VIP': VIP.toMap(),
     };
   }
 
   factory MemberModel.fromMap(Map<String, dynamic> map) {
-    print("map in MemberModel :${map["member"]['general']}");
+    //print("map in MemberModel :${map["member"]['general']}");
     return MemberModel(
       general: DiscountedPriceModel.fromMap(map["member"]['general']),
       VIP: DiscountedPriceModel.fromMap(map["member"]['VIP']),

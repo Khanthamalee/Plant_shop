@@ -27,7 +27,7 @@ class BooknoModel {
   }
 
   factory BooknoModel.fromMap(Map<String, dynamic> map) {
-    print("map in BooknoModel :$map");
+    //print("map in BooknoModel :$map");
     return BooknoModel(
       Id: map['Id'] as String,
       title: map['title'] as String,
