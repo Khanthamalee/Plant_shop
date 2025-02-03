@@ -1,11 +1,12 @@
 import 'package:firebase_shop/common/bloc/button/button_state.dart';
 import 'package:firebase_shop/common/bloc/button/button_state_cubit.dart';
+import 'package:firebase_shop/common/helper/Navigator/app_navigator.dart';
 import 'package:firebase_shop/common/helper/bottomsheet/app_bottom_sheet.dart';
 import 'package:firebase_shop/common/widget/appbar/app_bar.dart';
 import 'package:firebase_shop/common/widget/button/basic_reactive_button.dart.dart';
 import 'package:firebase_shop/core/configs/theme/app_color.dart';
 import 'package:firebase_shop/domain/Auth/usecases/signup.dart';
-import 'package:firebase_shop/presentation/auth/pages/widgets/ages.dart';
+import 'package:firebase_shop/presentation/auth/widgets/ages.dart';
 import 'package:firebase_shop/presentation/splash/bloc/age_display_cubit.dart';
 import 'package:firebase_shop/presentation/splash/bloc/age_selection_cubit.dart';
 import 'package:firebase_shop/presentation/splash/bloc/gerder_cubic_selection.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/auth/models/user_creation_req.dart';
+import '../../home/pages/home.dart';
 
 class GenderAndAgeSelectionPage extends StatelessWidget {
   final UserCreationReq userCreateReq;
@@ -186,6 +188,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
                 print(userCreateReq.firstName);
                 print(userCreateReq.gender);
                 print(userCreateReq.age);
+                AppNavigator.push(context, HomePage());
               },
               title: 'Finish',
             );
