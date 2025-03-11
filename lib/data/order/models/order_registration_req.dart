@@ -1,6 +1,7 @@
 import 'package:firebase_shop/data/order/models/order_status.dart';
 import 'package:firebase_shop/data/order/models/product_ordered.dart';
 import 'package:firebase_shop/domain/order/entity/product_ordered.dart';
+import 'package:intl/intl.dart';
 
 class OrderRegistrationReq {
   final String? code;
@@ -23,7 +24,7 @@ class OrderRegistrationReq {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'code': DateTime.now().toString(),
+      'code': DateFormat("yyyyMMddhhmmss").format(DateTime.now()),
       'products': products.map((e) => e.fromEntity().toMap()).toList(),
       'createData': createData,
       'itemCount': itemCount,

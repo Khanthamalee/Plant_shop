@@ -32,6 +32,7 @@ class MyOrdersPage extends StatelessWidget {
             }
 
             if (state is OrderLoaded) {
+              print(state.orders);
               return _order(state.orders, context, userEntity);
             }
 
