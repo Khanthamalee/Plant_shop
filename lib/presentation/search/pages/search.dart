@@ -21,7 +21,7 @@ class SearchPage extends StatelessWidget {
           ProductsDisplayCubit(usecase: sl<GetProductsByTitleUseCase>()),
       child: Scaffold(
         appBar: BasicAppBar(
-          hetght: 50,
+          hetght: 70,
           width: 50,
           title: SearchField(),
         ),

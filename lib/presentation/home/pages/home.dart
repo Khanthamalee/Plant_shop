@@ -35,9 +35,9 @@ class HomePage extends StatelessWidget {
                     user: state.user,
                   ),
                   _height(context),
-                  SearchField(),
-                  _height(context),
-                  Categories(user : state.user),
+                  // SearchField(),
+                  // _height(context),
+                  Categories(user: state.user),
                   _height(context),
                   TopSelling(
                     user: state.user,

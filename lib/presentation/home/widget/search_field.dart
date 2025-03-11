@@ -18,7 +18,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: DSW(15), right: DSW(15)),
+      padding: EdgeInsets.only(left: DSW(15), right: DSW(15), top: DSH(10)),
       child: TextField(
           onChanged: (value) {
             if (value.isEmpty) {

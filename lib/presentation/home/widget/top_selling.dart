@@ -1,18 +1,20 @@
+import 'package:firebase_shop/core/configs/assets/app_vector.dart';
 import 'package:firebase_shop/presentation/home/bloc/top_selling_display_cubit.dart';
 import 'package:firebase_shop/presentation/home/bloc/top_selling_display_state.dart';
 import 'package:firebase_shop/responsive/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../common/helper/Navigator/app_navigator.dart';
 import '../../../common/widget/product/product_card.dart';
 import '../../../core/configs/theme/app_color.dart';
 import '../../../domain/entity/user.dart';
 import '../../../domain/product/entities/product.dart';
+import '../../search/pages/search.dart';
 
 class TopSelling extends StatelessWidget {
-  
   final UserEntity user;
-  const TopSelling({super.key,required this.user});
+  const TopSelling({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,11 @@ class TopSelling extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _topSellingText(),
+                  Row(
+                    children: [_topSellingText(), _searchbutton(context)],
+                  ),
                   _height(context),
-                  _topSellingList(state.products, context,user),
+                  _topSellingList(state.products, context, user),
                 ],
               );
             }
@@ -66,7 +70,24 @@ class TopSelling extends StatelessWidget {
     );
   }
 
-  Widget _topSellingList(List<ProductEntity> products, BuildContext context,UserEntity user) {
+  Widget _searchbutton(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.push(context, SearchPage());
+      },
+      child: SizedBox(
+        height: DSH(30),
+        width: DSW(30),
+        child: Icon(
+          Icons.search_rounded,
+          size: DSH(25),
+        ),
+      ),
+    );
+  }
+
+  Widget _topSellingList(
+      List<ProductEntity> products, BuildContext context, UserEntity user) {
     print("products $products");
     return SizedBox(
       height: DSH(210),
@@ -77,7 +98,7 @@ class TopSelling extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ProductCard(productEntity: products[index],user : user),
+              ProductCard(productEntity: products[index], user: user),
               _height(context),
               SizedBox(
                 width: DSW(50),
