@@ -38,6 +38,7 @@ dependencies:
   dartz: 
   cloud_firestore: 
   get_it: 
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:

@@ -90,7 +90,7 @@ class CartPage extends StatelessWidget {
   Widget _cartisEmpty(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: DSH(200),
+        height: DSH(400),
         //color: AppColors.backgroundsecondary,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
